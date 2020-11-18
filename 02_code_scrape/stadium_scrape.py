@@ -153,8 +153,7 @@ def coord_table(urls = None, sleep = 10):
         #Build a pandas table from the scraped content
     dat =  pd.DataFrame(scraped_data,columns=["lat","lon","URL"])
     return dat
-                #except:
-                #    print("No scrapeable info")
+
 # %%
 #############################
 # Get the coordinate tables #

@@ -166,4 +166,24 @@ for i in ["Stadium","Capacity","URL","lat","lon","Turf"]:
     df = df.drop(columns = [f'{i}_x', f'{i}_y'])
 
 # %%
-# Only Superbowl left now
+
+######################
+# Superbowl stadiums #
+######################
+df.columns
+
+sb = pd.read_csv("../05_data_clean/superbowl_stadiums.csv")
+
+df = df.merge(sb, left_on=["Season","Week"], right_on=["Season","Week"],how="left")
+
+# %%
+# Similar drop as above
+for i in ["Stadium","Capacity","lat","lon","Turf","Attendance"]:
+    df[f'{i}'] = df[f'{i}_y'].fillna(df[f'{i}_x'])
+    df = df.drop(columns = [f'{i}_x', f'{i}_y'])
+
+
+# %%
+
+#Looks ok, but I need attendance data for playoff games because PFR only has attendance for the regular season.
+df.loc[df.Turf.isnull()]

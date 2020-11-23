@@ -174,6 +174,7 @@ df.columns
 
 sb = pd.read_csv("../05_data_clean/superbowl_stadiums.csv")
 
+# "Week" is just a column of "SuperBowl"
 df = df.merge(sb, left_on=["Season","Week"], right_on=["Season","Week"],how="left")
 
 # %%
@@ -184,6 +185,59 @@ for i in ["Stadium","Capacity","lat","lon","Turf","Attendance"]:
 
 
 # %%
+##################################
+# Merge playoff attendance to df #
+##################################
 
-#Looks ok, but I need attendance data for playoff games because PFR only has attendance for the regular season.
-df.loc[df.Turf.isnull()]
+# Playoff attendance
+playoff = pd.read_csv("../05_data_clean/playoff_attendance_clean.csv")
+playoff.Home_team.unique()
+
+
+#%%
+# Let the SB winner to be the Home_team for now
+df.loc[df["Week"]=="SuperBowl","Home_team"] = df["Winner/tie"]
+
+# Merge
+df = df.merge(playoff, left_on=["Season","Date","Home_team"], right_on=["Season","Date","Home_team"], how = "left")
+
+
+
+# %%
+# Drop "away team"
+df = df.drop(columns = "away team")
+
+
+# %%
+#########################################
+# Merge regular season attendance to df #
+#########################################
+
+# Read in the data
+reg = pd.read_csv("../05_data_clean/regular_attendance_clean.csv")
+reg["Week"] = reg["Week"].astype(str)
+
+# Merge
+df = df.merge(reg, left_on=["Home_team","Season","Week"], right_on=["Home_team","Season","Week"], how = "left")
+
+
+# %%
+df.loc[df.attendance_y.isnull()]
+
+#%%
+
+# Merge attendance_x and attendance_y
+for i in ["attendance"]:
+    df[f'{i}'] = df[f'{i}_x'].fillna(df[f'{i}_y'])
+    #df = df.drop(columns = [f'{i}_x', f'{i}_y'])
+
+# %%
+# If attendance is still null, then use Attendance
+df["attendance"] = df["attendance"].fillna(df["Attendance"])
+
+# Drop duplicate columns
+df = df.drop(columns=["Attendance","attendance_x","attendance_y"])
+
+# %%
+# df is in ok shape now!!!
+# next step is to drop the irrelevant columns

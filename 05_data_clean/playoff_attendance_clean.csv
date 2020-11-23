@@ -1,0 +1,308 @@
+﻿away team,Home_team,attendance,Date,Season
+Washington Redskins,Minnesota Vikings,57353.0,January 2,1992.0
+Kansas City Chiefs,San Diego Chargers,58278.0,January 2,1992.0
+Houston Oilers,Buffalo Bills,75141.0,January 3,1992.0
+Philadelphia Eagles,New Orleans Saints,68591.0,January 3,1992.0
+Buffalo Bills,Pittsburgh Steelers,60407.0,January 9,1992.0
+Washington Redskins,San Francisco 49ers,64991.0,January 9,1992.0
+Philadelphia Eagles,Dallas Cowboys,63721.0,January 10,1992.0
+San Diego Chargers,Miami Dolphins,71224.0,January 10,1992.0
+Buffalo Bills,Miami Dolphins,72703.0,January 17,1992.0
+Dallas Cowboys,San Francisco 49ers,64920.0,January 17,1992.0
+Buffalo Bills,Dallas Cowboys,98374.0,January 31,1992.0
+Pittsburgh Steelers,Kansas City Chiefs,74515.0,January 8,1993.0
+Green Bay Packers,Detroit Lions,68479.0,January 8,1993.0
+Minnesota Vikings,New York Giants,75089.0,January 9,1993.0
+Denver Broncos,Los Angeles Raiders,65314.0,January 9,1993.0
+Los Angeles Raiders,Buffalo Bills,61923.0,January 15,1993.0
+New York Giants,San Francisco 49ers,67143.0,January 15,1993.0
+Green Bay Packers,Dallas Cowboys,64790.0,January 16,1993.0
+Kansas City Chiefs,Houston Oilers,64011.0,January 16,1993.0
+Kansas City Chiefs,Buffalo Bills,76642.0,January 23,1993.0
+San Francisco 49ers,Dallas Cowboys,64902.0,January 23,1993.0
+Dallas Cowboys,Buffalo Bills,72817.0,January 30,1993.0
+Detroit Lions,Green Bay Packers,58125.0,December 31,1994.0
+Kansas City Chiefs,Miami Dolphins,67487.0,December 31,1994.0
+New England Patriots,Cleveland Browns,77452.0,January 1,1994.0
+Chicago Bears,Minnesota Vikings,60347.0,January 1,1994.0
+Cleveland Browns,Pittsburgh Steelers,58185.0,January 7,1994.0
+Chicago Bears,San Francisco 49ers,64644.0,January 7,1994.0
+Green Bay Packers,Dallas Cowboys,64745.0,January 8,1994.0
+Miami Dolphins,San Diego Chargers,63381.0,January 8,1994.0
+San Diego Chargers,Pittsburgh Steelers,61545.0,January 15,1994.0
+Dallas Cowboys,San Francisco 49ers,69125.0,January 15,1994.0
+San Diego Chargers,San Francisco 49ers,74107.0,January 29,1994.0
+Miami Dolphins,Buffalo Bills,73103.0,December 30,1995.0
+Detroit Lions,Philadelphia Eagles,66099.0,December 30,1995.0
+Atlanta Falcons,Green Bay Packers,60453.0,December 31,1995.0
+Indianapolis Colts,San Diego Chargers,61182.0,December 31,1995.0
+Buffalo Bills,Pittsburgh Steelers,59072.0,January 6,1995.0
+Green Bay Packers,San Francisco 49ers,69311.0,January 6,1995.0
+Philadelphia Eagles,Dallas Cowboys,64371.0,January 7,1995.0
+Indianapolis Colts,Kansas City Chiefs,77594.0,January 7,1995.0
+Indianapolis Colts,Pittsburgh Steelers,61062.0,January 14,1995.0
+Green Bay Packers,Dallas Cowboys,65135.0,January 14,1995.0
+Dallas Cowboys,Pittsburgh Steelers,76347.0,January 28,1995.0
+Jacksonville Jaguars,Buffalo Bills,70213.0,December 28,1996.0
+Minnesota Vikings,Dallas Cowboys,64682.0,December 28,1996.0
+Indianapolis Colts,Pittsburgh Steelers,58078.0,December 29,1996.0
+Philadelphia Eagles,San Francisco 49ers,56460.0,December 29,1996.0
+San Francisco 49ers,Green Bay Packers,60787.0,January 4,1996.0
+Jacksonville Jaguars,Denver Broncos,75678.0,January 4,1996.0
+Pittsburgh Steelers,New England Patriots,60188.0,January 5,1996.0
+Dallas Cowboys,Carolina Panthers,72808.0,January 5,1996.0
+Carolina Panthers,Green Bay Packers,60216.0,January 12,1996.0
+Jacksonville Jaguars,New England Patriots,60190.0,January 12,1996.0
+New England Patriots,Green Bay Packers,72301.0,January 26,1996.0
+Minnesota Vikings,New York Giants,77710.0,December 27,1997.0
+Jacksonville Jaguars,Denver Broncos,74481.0,December 27,1997.0
+Miami Dolphins,New England Patriots,60041.0,December 28,1997.0
+Detroit Lions,Tampa Bay Buccaneers,73361.0,December 28,1997.0
+New England Patriots,Pittsburgh Steelers,61228.0,January 3,1997.0
+Minnesota Vikings,San Francisco 49ers,65018.0,January 3,1997.0
+Tampa Bay Buccaneers,Green Bay Packers,60327.0,January 4,1997.0
+Denver Broncos,Kansas City Chiefs,76965.0,January 4,1997.0
+Denver Broncos,Pittsburgh Steelers,61382.0,January 11,1997.0
+Green Bay Packers,San Francisco 49ers,68987.0,January 11,1997.0
+Green Bay Packers,Denver Broncos,68912.0,January 25,1997.0
+Buffalo Bills,Miami Dolphins,72698.0,January 2,1998.0
+Arizona Cardinals,Dallas Cowboys,62969.0,January 2,1998.0
+New England Patriots,Jacksonville Jaguars,71139.0,January 3,1998.0
+Green Bay Packers,San Francisco 49ers,66506.0,January 3,1998.0
+San Francisco 49ers,Atlanta Falcons,70262.0,January 9,1998.0
+Miami Dolphins,Denver Broncos,75729.0,January 9,1998.0
+Jacksonville Jaguars,New York Jets,78817.0,January 10,1998.0
+Arizona Cardinals,Minnesota Vikings,63760.0,January 10,1998.0
+Atlanta Falcons,Minnesota Vikings,64060.0,January 17,1998.0
+New York Jets,Denver Broncos,75482.0,January 17,1998.0
+Denver Broncos,Atlanta Falcons,74803.0,January 31,1998.0
+Buffalo Bills,Tennessee Titans,66672.0,January 8,1999.0
+Detroit Lions,Washington Redskins,79411.0,January 8,1999.0
+Dallas Cowboys,Minnesota Vikings,64056.0,January 9,1999.0
+Miami Dolphins,Seattle Seahawks,66170.0,January 9,1999.0
+Miami Dolphins,Jacksonville Jaguars,75173.0,January 15,1999.0
+Washington Redskins,Tampa Bay Buccaneers,65835.0,January 15,1999.0
+Minnesota Vikings,St. Louis Rams,66194.0,January 16,1999.0
+Tennessee Titans,Indianapolis Colts,60314.0,January 16,1999.0
+Tennessee Titans,Jacksonville Jaguars,75206.0,January 23,1999.0
+Tampa Bay Buccaneers,St. Louis Rams,66396.0,January 23,1999.0
+St. Louis Rams,Tennessee Titans,72625.0,January 30,1999.0
+Indianapolis Colts,Miami Dolphins,73193.0,December 30,2000.0
+St. Louis Rams,New Orleans Saints,64900.0,December 30,2000.0
+Denver Broncos,Baltimore Ravens,69638.0,December 31,2000.0
+Tampa Bay Buccaneers,Philadelphia Eagles,65813.0,December 31,2000.0
+New Orleans Saints,Minnesota Vikings,63881.0,January 6,2000.0
+Miami Dolphins,Oakland Raiders,61998.0,January 6,2000.0
+Baltimore Ravens,Tennessee Titans,68527.0,January 7,2000.0
+Philadelphia Eagles,New York Giants,78765.0,January 7,2000.0
+Minnesota Vikings,New York Giants,79310.0,January 14,2000.0
+Baltimore Ravens,Oakland Raiders,62784.0,January 14,2000.0
+Baltimore Ravens,New York Giants,71921.0,January 28,2000.0
+Tampa Bay Buccaneers,Philadelphia Eagles,65846.0,January 12,2001.0
+New York Jets,Oakland Raiders,61503.0,January 12,2001.0
+San Francisco 49ers,Green Bay Packers,59825.0,January 13,2001.0
+Baltimore Ravens,Miami Dolphins,72251.0,January 13,2001.0
+Philadelphia Eagles,Chicago Bears,65028.0,January 19,2001.0
+Oakland Raiders,New England Patriots,60292.0,January 19,2001.0
+Baltimore Ravens,Pittsburgh Steelers,63976.0,January 20,2001.0
+Green Bay Packers,St. Louis Rams,66338.0,January 20,2001.0
+New England Patriots,Pittsburgh Steelers,64704.0,January 27,2001.0
+Philadelphia Eagles,St. Louis Rams,66502.0,January 27,2001.0
+St. Louis Rams,New England Patriots,72965.0,February 3,2001.0
+Indianapolis Colts,New York Jets,78524.0,January 4,2002.0
+Atlanta Falcons,Green Bay Packers,65358.0,January 4,2002.0
+Cleveland Browns,Pittsburgh Steelers,62595.0,January 5,2002.0
+New York Giants,San Francisco 49ers,66318.0,January 5,2002.0
+Pittsburgh Steelers,Tennessee Titans,68809.0,January 11,2002.0
+Atlanta Falcons,Philadelphia Eagles,66452.0,January 11,2002.0
+San Francisco 49ers,Tampa Bay Buccaneers,65599.0,January 12,2002.0
+New York Jets,Oakland Raiders,62207.0,January 12,2002.0
+Tampa Bay Buccaneers,Philadelphia Eagles,66713.0,January 19,2002.0
+Tennessee Titans,Oakland Raiders,62544.0,January 19,2002.0
+Oakland Raiders,Tampa Bay Buccaneers,67603.0,January 26,2002.0
+Tennessee Titans,Baltimore Ravens,69452.0,January 3,2003.0
+Dallas Cowboys,Carolina Panthers,73014.0,January 3,2003.0
+Seattle Seahawks,Green Bay Packers,71457.0,January 4,2003.0
+Denver Broncos,Indianapolis Colts,56586.0,January 4,2003.0
+Carolina Panthers,St. Louis Rams,66165.0,January 10,2003.0
+Tennessee Titans,New England Patriots,68436.0,January 10,2003.0
+Indianapolis Colts,Kansas City Chiefs,79159.0,January 11,2003.0
+Green Bay Packers,Philadelphia Eagles,67707.0,January 11,2003.0
+Indianapolis Colts,New England Patriots,68436.0,January 18,2003.0
+Carolina Panthers,Philadelphia Eagles,65158.0,January 18,2003.0
+Carolina Panthers,New England Patriots,71525.0,February 1,2003.0
+St. Louis Rams,Seattle Seahawks,65397.0,January 8,2004.0
+New York Jets,San Diego Chargers,67536.0,January 8,2004.0
+Denver Broncos,Indianapolis Colts,56609.0,January 9,2004.0
+Minnesota Vikings,Green Bay Packers,71075.0,January 9,2004.0
+New York Jets,Pittsburgh Steelers,64915.0,January 15,2004.0
+St. Louis Rams,Atlanta Falcons,70709.0,January 15,2004.0
+Minnesota Vikings,Philadelphia Eagles,67722.0,January 16,2004.0
+Indianapolis Colts,New England Patriots,68756.0,January 16,2004.0
+Atlanta Falcons,Philadelphia Eagles,67717.0,January 23,2004.0
+New England Patriots,Pittsburgh Steelers,65242.0,January 23,2004.0
+New England Patriots,Philadelphia Eagles,78125.0,February 6,2004.0
+Washington Redskins,Tampa Bay Buccaneers,65514.0,January 7,2005.0
+Jacksonville Jaguars,New England Patriots,68756.0,January 7,2005.0
+Carolina Panthers,New York Giants,79378.0,January 8,2005.0
+Pittsburgh Steelers,Cincinnati Bengals,65870.0,January 8,2005.0
+Washington Redskins,Seattle Seahawks,67551.0,January 14,2005.0
+New England Patriots,Denver Broncos,76238.0,January 14,2005.0
+Pittsburgh Steelers,Indianapolis Colts,57449.0,January 15,2005.0
+Carolina Panthers,Chicago Bears,62209.0,January 15,2005.0
+Pittsburgh Steelers,Denver Broncos,76775.0,January 22,2005.0
+Carolina Panthers,Seattle Seahawks,67837.0,January 22,2005.0
+Seattle Seahawks,Pittsburgh Steelers,68206.0,February 5,2005.0
+Kansas City Chiefs,Indianapolis Colts,57310.0,January 6,2006.0
+Dallas Cowboys,Seattle Seahawks,68058.0,January 6,2006.0
+New York Jets,New England Patriots,68756.0,January 7,2006.0
+New York Giants,Philadelphia Eagles,69064.0,January 7,2006.0
+Indianapolis Colts,Baltimore Ravens,71962.0,January 13,2006.0
+Philadelphia Eagles,New Orleans Saints,70001.0,January 13,2006.0
+Seattle Seahawks,Chicago Bears,62184.0,January 14,2006.0
+New England Patriots,San Diego Chargers,68810.0,January 14,2006.0
+New Orleans Saints,Chicago Bears,61817.0,January 21,2006.0
+New England Patriots,Indianapolis Colts,57433.0,January 21,2006.0
+Indianapolis Colts,Chicago Bears,71101.0,February 4,2006.0
+Washington Redskins,Seattle Seahawks,68298.0,January 5,2007.0
+Jacksonville Jaguars,Pittsburgh Steelers,63629.0,January 5,2007.0
+New York Giants,Tampa Bay Buccaneers,65621.0,January 6,2007.0
+Tennessee Titans,San Diego Chargers,65640.0,January 6,2007.0
+Seattle Seahawks,Green Bay Packers,72168.0,January 12,2007.0
+Jacksonville Jaguars,New England Patriots,68756.0,January 12,2007.0
+San Diego Chargers,Indianapolis Colts,56930.0,January 13,2007.0
+New York Giants,Dallas Cowboys,63660.0,January 13,2007.0
+San Diego Chargers,New England Patriots,68756.0,January 20,2007.0
+New York Giants,Green Bay Packers,72740.0,January 20,2007.0
+New York Giants,New England Patriots,71101.0,February 3,2007.0
+Atlanta Falcons,Arizona Cardinals,62848.0,January 3,2008.0
+Indianapolis Colts,San Diego Chargers,68082.0,January 3,2008.0
+Baltimore Ravens,Miami Dolphins,74240.0,January 4,2008.0
+Philadelphia Eagles,Minnesota Vikings,61746.0,January 4,2008.0
+Baltimore Ravens,Tennessee Titans,69143.0,January 10,2008.0
+Arizona Cardinals,Carolina Panthers,73695.0,January 10,2008.0
+Philadelphia Eagles,New York Giants,79193.0,January 11,2008.0
+San Diego Chargers,Pittsburgh Steelers,63899.0,January 11,2008.0
+Philadelphia Eagles,Arizona Cardinals,70650.0,January 18,2008.0
+Baltimore Ravens,Pittsburgh Steelers,65350.0,January 18,2008.0
+Pittsburgh Steelers,Arizona Cardinals,70774.0,February 1,2008.0
+New York Jets,Cincinnati Bengals,63686.0,January 9,2009.0
+Philadelphia Eagles,Dallas Cowboys,92951.0,January 9,2009.0
+Baltimore Ravens,New England Patriots,68756.0,January 10,2009.0
+Green Bay Packers,Arizona Cardinals,61926.0,January 10,2009.0
+Arizona Cardinals,New Orleans Saints,70149.0,January 16,2009.0
+Baltimore Ravens,Indianapolis Colts,67535.0,January 16,2009.0
+Dallas Cowboys,Minnesota Vikings,63547.0,January 17,2009.0
+New York Jets,San Diego Chargers,69498.0,January 17,2009.0
+New York Jets,Indianapolis Colts,67650.0,January 24,2009.0
+Minnesota Vikings,New Orleans Saints,71276.0,January 24,2009.0
+New Orleans Saints,Indianapolis Colts,74059.0,February 7,2009.0
+New Orleans Saints,Seattle Seahawks,66336.0,January 8,2010.0
+New York Jets,Indianapolis Colts,65332.0,January 8,2010.0
+Baltimore Ravens,Kansas City Chiefs,72190.0,January 9,2010.0
+Green Bay Packers,Philadelphia Eagles,69144.0,January 9,2010.0
+Baltimore Ravens,Pittsburgh Steelers,64879.0,January 15,2010.0
+Green Bay Packers,Atlanta Falcons,69210.0,January 15,2010.0
+Seattle Seahawks,Chicago Bears,62265.0,January 16,2010.0
+New York Jets,New England Patriots,68756.0,January 16,2010.0
+Green Bay Packers,Chicago Bears,62377.0,January 23,2010.0
+New York Jets,Pittsburgh Steelers,66662.0,January 23,2010.0
+Pittsburgh Steelers,Green Bay Packers,103219.0,February 6,2010.0
+Cincinnati Bengals,Houston Texans,71725.0,January 7,2011.0
+Detroit Lions,New Orleans Saints,73038.0,January 7,2011.0
+Atlanta Falcons,New York Giants,79909.0,January 8,2011.0
+Pittsburgh Steelers,Denver Broncos,75970.0,January 8,2011.0
+New Orleans Saints,San Francisco 49ers,69732.0,January 14,2011.0
+Denver Broncos,New England Patriots,68756.0,January 14,2011.0
+Houston Texans,Baltimore Ravens,71547.0,January 15,2011.0
+New York Giants,Green Bay Packers,72080.0,January 15,2011.0
+Baltimore Ravens,New England Patriots,68756.0,January 22,2011.0
+New York Giants,San Francisco 49ers,69732.0,January 22,2011.0
+New York Giants,New England Patriots,68658.0,February 5,2011.0
+Cincinnati Bengals,Houston Texans,71738.0,January 5,2012.0
+Minnesota Vikings,Green Bay Packers,71548.0,January 5,2012.0
+Indianapolis Colts,Baltimore Ravens,71379.0,January 6,2012.0
+Seattle Seahawks,Washington Redskins,84325.0,January 6,2012.0
+Baltimore Ravens,Denver Broncos,76732.0,January 12,2012.0
+Green Bay Packers,San Francisco 49ers,69732.0,January 12,2012.0
+Seattle Seahawks,Atlanta Falcons,70366.0,January 13,2012.0
+Houston Texans,New England Patriots,68756.0,January 13,2012.0
+San Francisco 49ers,Atlanta Falcons,70863.0,January 20,2012.0
+Baltimore Ravens,New England Patriots,68756.0,January 20,2012.0
+Kansas City Chiefs,Indianapolis Colts,63551.0,January 4,2013.0
+New Orleans Saints,Philadelphia Eagles,69144.0,January 4,2013.0
+San Diego Chargers,Cincinnati Bengals,62277.0,January 5,2013.0
+San Francisco 49ers,Green Bay Packers,77525.0,January 5,2013.0
+New Orleans Saints,Seattle Seahawks,68388.0,January 11,2013.0
+Indianapolis Colts,New England Patriots,68756.0,January 11,2013.0
+San Francisco 49ers,Carolina Panthers,73784.0,January 12,2013.0
+San Diego Chargers,Denver Broncos,76969.0,January 12,2013.0
+New England Patriots,Denver Broncos,77110.0,January 19,2013.0
+San Francisco 49ers,Seattle Seahawks,68454.0,January 19,2013.0
+Seattle Seahawks,Denver Broncos,82529.0,February 2,2013.0
+Arizona Cardinals,Carolina Panthers,71849.0,January 3,2014.0
+Baltimore Ravens,Pittsburgh Steelers,62780.0,January 3,2014.0
+Cincinnati Bengals,Indianapolis Colts,63385.0,January 4,2014.0
+Detroit Lions,Dallas Cowboys,91410.0,January 4,2014.0
+Baltimore Ravens,New England Patriots,68756.0,January 10,2014.0
+Carolina Panthers,Seattle Seahawks,68524.0,January 10,2014.0
+Dallas Cowboys,Green Bay Packers,79704.0,January 11,2014.0
+Indianapolis Colts,Denver Broncos,76867.0,January 11,2014.0
+Green Bay Packers,Seattle Seahawks,68538.0,January 18,2014.0
+Indianapolis Colts,New England Patriots,68756.0,January 18,2014.0
+New England Patriots,Seattle Seahawks,70288.0,February 1,2014.0
+Kansas City Chiefs,Houston Texans,71800.0,January 9,2015.0
+Pittsburgh Steelers,Cincinnati Bengals,63257.0,January 9,2015.0
+Seattle Seahawks,Minnesota Vikings,52090.0,January 10,2015.0
+Green Bay Packers,Washington Redskins,81367.0,January 10,2015.0
+Kansas City Chiefs,New England Patriots,66829.0,January 16,2015.0
+Green Bay Packers,Arizona Cardinals,65089.0,January 16,2015.0
+Seattle Seahawks,Carolina Panthers,74287.0,January 17,2015.0
+Pittsburgh Steelers,Denver Broncos,76956.0,January 17,2015.0
+New England Patriots,Denver Broncos,77112.0,January 24,2015.0
+Arizona Cardinals,Carolina Panthers,74294.0,January 24,2015.0
+Carolina Panthers,Denver Broncos,71088.0,February 7,2015.0
+Oakland Raiders,Houston Texans,71790.0,January 7,2016.0
+Detroit Lions,Seattle Seahawks,68788.0,January 7,2016.0
+Miami Dolphins,Pittsburgh Steelers,62726.0,January 8,2016.0
+New York Giants,Green Bay Packers,77549.0,January 8,2016.0
+Seattle Seahawks,Atlanta Falcons,71155.0,January 14,2016.0
+Houston Texans,New England Patriots,66829.0,January 14,2016.0
+Green Bay Packers,Dallas Cowboys,93396.0,January 15,2016.0
+Pittsburgh Steelers,Kansas City Chiefs,75678.0,January 15,2016.0
+Green Bay Packers,Atlanta Falcons,71127.0,January 22,2016.0
+Pittsburgh Steelers,New England Patriots,66829.0,January 22,2016.0
+New England Patriots,Atlanta Falcons,70807.0,February 5,2016.0
+Tennessee Titans,Kansas City Chiefs,73319.0,January 6,2017.0
+Atlanta Falcons,Los Angeles Rams,74300.0,January 6,2017.0
+Buffalo Bills,Jacksonville Jaguars,69442.0,January 7,2017.0
+Carolina Panthers,New Orleans Saints,73186.0,January 7,2017.0
+Atlanta Falcons,Philadelphia Eagles,69596.0,January 13,2017.0
+Tennessee Titans,New England Patriots,65878.0,January 13,2017.0
+Jacksonville Jaguars,Pittsburgh Steelers,64524.0,January 14,2017.0
+New Orleans Saints,Minnesota Vikings,66612.0,January 14,2017.0
+Jacksonville Jaguars,New England Patriots,65878.0,January 21,2017.0
+Minnesota Vikings,Philadelphia Eagles,69596.0,January 21,2017.0
+Philadelphia Eagles,New England Patriots,67612.0,February 4,2017.0
+Indianapolis Colts,Houston Texans,71798.0,January 5,2018.0
+Seattle Seahawks,Dallas Cowboys,94327.0,January 5,2018.0
+Los Angeles Chargers,Baltimore Ravens,70432.0,January 6,2018.0
+Philadelphia Eagles,Chicago Bears,62462.0,January 6,2018.0
+Indianapolis Colts,Kansas City Chiefs,76765.0,January 12,2018.0
+Dallas Cowboys,Los Angeles Rams,77187.0,January 12,2018.0
+Los Angeles Chargers,New England Patriots,65878.0,January 13,2018.0
+Philadelphia Eagles,New Orleans Saints,73027.0,January 13,2018.0
+Los Angeles Rams,New Orleans Saints,73028.0,January 20,2018.0
+New England Patriots,Kansas City Chiefs,77034.0,January 20,2018.0
+New England Patriots,Los Angeles Rams,70081.0,February 3,2018.0
+Buffalo Bills,Houston Texans,71699.0,January 4,2019.0
+Tennessee Titans,New England Patriots,65878.0,January 4,2019.0
+Minnesota Vikings,New Orleans Saints,73038.0,January 5,2019.0
+Seattle Seahawks,Philadelphia Eagles,69796.0,January 5,2019.0
+Minnesota Vikings,San Francisco 49ers,71649.0,January 11,2019.0
+Tennessee Titans,Baltimore Ravens,71254.0,January 11,2019.0
+Houston Texans,Kansas City Chiefs,73503.0,January 12,2019.0
+Seattle Seahawks,Green Bay Packers,78998.0,January 12,2019.0
+Tennessee Titans,Kansas City Chiefs,73656.0,January 19,2019.0
+Green Bay Packers,San Francisco 49ers,72211.0,January 19,2019.0
+San Francisco 49ers,Kansas City Chiefs,62417.0,February 2,2019.0

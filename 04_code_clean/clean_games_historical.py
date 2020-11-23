@@ -241,3 +241,16 @@ df = df.drop(columns=["Attendance","attendance_x","attendance_y"])
 # %%
 # df is in ok shape now!!!
 # next step is to drop the irrelevant columns
+
+df.columns
+# Drop irrelevant columns
+df = df.drop(columns=['Team','Surface','Location','URL'])
+
+# Rename Turf Surface
+df = df.rename(columns={"Turf":"Surface"})
+
+# %%
+# Export to csv
+df.to_csv("../05_data_clean/games_historical_clean.csv" ,index=False,encoding='utf-8-sig')
+
+# Next, need to think about how to shape the data to calculate distance traveled and time rest

@@ -6,6 +6,8 @@ import numpy as np
 
 # Read the scraped table as pandas df
 games_historical = pd.read_csv("../03_data_scrape/games_historical_raw.csv")
+
+games_historical
 # %%
 ##########################
 # Drop unneccessary rows #
@@ -33,16 +35,56 @@ games_historical["Home_team"] = None
 games_historical.loc[(games_historical["Unnamed: 5"] == "@"), "Home_team"] = games_historical["Loser/tie"]
 games_historical.loc[(games_historical["Unnamed: 5"].isna()), "Home_team"] = games_historical["Winner/tie"]
 
-# %%
-#Drop the 2 unnamed columns
-games_historical = games_historical.drop(columns=["Unnamed: 5","Unnamed: 7"])
-
 #%%
 # September 19, Giants Staidum was "home" for the Saints but they still had to travel. Will change Home_team to Giants
 games_historical.loc[(games_historical.Home_team == "New Orleans Saints") & (games_historical.Season == 2005) & (games_historical.Date == "September 19"), "Home_team"] = "New York Giants"
 
+games_historical.head()
+
 
 # %%
+# If Home_team is Winner, then Away team is Loser and vice versa.
+games_historical["Away_team"] = None
+games_historical.loc[games_historical["Home_team"] == games_historical["Winner/tie"], "Away_team"] = games_historical["Loser/tie"]
+games_historical.loc[games_historical["Home_team"] == games_historical["Loser/tie"], "Away_team"] = games_historical["Winner/tie"]
+
+# %%
+# SuperBowl fix
+
+# Technically, the SuperBowl does not have a Home_team and an Away_team, but for the purpose of this cleaning file, I'll make the Winner the Home_team
+# Sounds like it can be problematic down the line so take note
+games_historical.loc[games_historical["Week"] == "SuperBowl", "Away_team"] = games_historical["Loser/tie"]
+games_historical.loc[games_historical["Week"] == "SuperBowl", "Home_team"] = games_historical["Winner/tie"]
+
+# %%
+#Drop the 2 unnamed columns
+games_historical = games_historical.drop(columns=["Unnamed: 5","Unnamed: 7"])
+
+# %%
+#Home team data
+#games_historical[["Home_Pts","Home_Yds","Home_TO"]] = ""
+#games_historical[["Away_Pts","Away_Yds","Away_TO"]] = ""
+
+#If Home team is equal to Winner/tie, then Pnts,
+games_historical.head(10)
+# %%
+games_historical["Winner/tie"] == games_historical["Home_team"]
+# %%
+# Put PtsW and PtsL into Home & Away data
+# If the Home team won, then Pts, Yds and TOs for the winning team
+
+for i in ["Pts","Yds","TO"]:
+    games_historical[f'Home_{i}'] = np.where(games_historical["Winner/tie"] == games_historical["Home_team"],games_historical[f'{i}W'],games_historical[f'{i}L'])
+    games_historical[f'Away_{i}'] = np.where(games_historical["Winner/tie"] == games_historical["Away_team"],games_historical[f'{i}W'],games_historical[f'{i}L'])
+
+# %%
+#############################
+# Initial merge of stadiums #
+#############################
+
+# I will merge the stadium file here, creating columns for the Home team's stadium, the Away team's stadium, and the game Stadium (where the game is actually played at)
+
+
 main_stadiums = pd.read_csv("../05_data_clean/main_stadiums_long.csv")
 # %%
 # There are 32 teams but 65 stadiums
@@ -54,11 +96,10 @@ games_historical.Home_team.nunique()
 # %%
 # Get a list of teams each season
 season_team = games_historical[["Season","Home_team"]].drop_duplicates()
-# Drop the superbowl where Home_team == None
+# Drop the SuperBowl where Home_team == None
 season_team = season_team.dropna()
 # Create Years_relevant column to merge
 season_team["Years_relevant"] = season_team["Season"]
-
 
 
 # %%
@@ -73,15 +114,61 @@ season_team["Team"] =season_team["Home_team"].apply(get_name)
 # Merge
 season_team = season_team.merge(main_stadiums,how="outer",left_on=["Team", "Years_relevant"], right_on=["Team", "Years_relevant"])
 
+# Check to see if we missed anything
 season_team.loc[season_team.Stadium.isnull(),"Home_team"]
 
+# Create Away_team column to get the stadium names too
+season_team["Away_team"] = season_team["Home_team"]
+
 # %%
-# Merge back to games_historical
-df = games_historical.merge(season_team, how = "left", on = ["Season", "Home_team"])
-df.columns
-# drop some columnd
-df = df.drop(columns = ["Year_start","Year_end","Year_start_num","Year_end_num","Years_relevant", "Years", "Years used", "Opened"])
+# Merge back to games_historical for the Home_team
+#df = games_historical.merge(season_team, how = "left", on = ["Season", "Home_team"])
+df = games_historical.merge(season_team, how = "left", left_on = ["Season", "Home_team"], right_on =  ["Season", "Home_team"])
+
+#Drop irrelevant columns
+df = df.drop(columns = ["Year_start","Year_end","Year_start_num","Year_end_num","Years_relevant", "Years", "Years used", "Opened", "Away_team_y"])
+
 # %%
+# Rename the columns for the Home team
+df[['Home_Stadium', 'Home_Capacity','Home_Surface', 'Home_Location', 'Home_URL', 'Home_lat', 'Home_lon', 'Home_Turf']] = df[['Stadium', 'Capacity',
+       'Surface', 'Location', 'URL', 'lat', 'lon', 'Turf']]
+
+# %%
+# Most of the time, the Game stadium is the same as the Home stadium - so just need to rename columns
+# Will work on exceptions later
+df = df.rename(columns={"Stadium":"Game_Stadium", "Capacity":"Game_Capacity", "Surface":"Game_Surface", "Location":"Game_Location","URL":"Game_URL","lat":"Game_lat","lon":"Game_lon","Turf":"Game_Turf"})
+
+# %%
+# Rename Away_team_x (remnant from the first merge)
+df = df.rename(columns = {"Away_team_x":"Away_team"})
+# Merge once again for the away team
+df = df.merge(season_team, how = "left", left_on = ["Season", "Away_team"], right_on =  ["Season", "Away_team"])
+
+#%%
+# Drop the excess columns again
+df = df.drop(columns = ["Home_team_y","Year_start","Year_end","Year_start_num","Year_end_num","Years_relevant", "Years", "Years used", "Opened"])
+
+# Rename Home_team_x
+df = df.rename(columns ={"Home_team_x": "Home_team"})
+
+# Rename the columns for away
+df = df.rename(columns={"Stadium":"Away_Stadium", "Capacity":"Away_Capacity", "Surface":"Away_Surface", "Location":"Away_Location","URL":"Away_URL","lat":"Away_lat","lon":"Away_lon","Turf":"Away_Turf"})
+
+#%%
+#Drop Team_y (this is the away team)
+df = df.drop(columns="Team_y")
+
+#Rename Team_x
+df = df.rename(columns={"Team_x":"Team"})
+
+#Rename the "Game_" columns back to normal
+df = df.rename(columns={"Game_Stadium":"Stadium", "Game_Capacity":"Capacity", "Game_Surface":"Surface", "Game_Location":"Location","Game_URL":"URL","Game_lat":"lat","Game_lon":"lon","Game_Turf":"Turf"})
+
+
+# %%
+#############################
+# Next, do the odd stadiums #
+#############################
 
 odd_stadiums = pd.read_csv("../05_data_clean/main_stadiums_merge.csv")
 
@@ -133,6 +220,7 @@ df.loc[(df.Home_team == "Buffalo Bills") & (df.Season == 2013) & (df.Date.isin([
 # %%
 #Think I'm done with The Odd games. Now I need temp stadiums & int stadiums, then the SB
 
+# %%
 ########################
 # International series #
 ########################
@@ -196,7 +284,7 @@ playoff.Home_team.unique()
 
 #%%
 # Let the SB winner to be the Home_team for now
-df.loc[df["Week"]=="SuperBowl","Home_team"] = df["Winner/tie"]
+#df.loc[df["Week"]=="SuperBowl","Home_team"] = df["Winner/tie"]
 
 # Merge
 df = df.merge(playoff, left_on=["Season","Date","Home_team"], right_on=["Season","Date","Home_team"], how = "left")
@@ -244,10 +332,18 @@ df = df.drop(columns=["Attendance","attendance_x","attendance_y"])
 
 df.columns
 # Drop irrelevant columns
-df = df.drop(columns=['Team','Surface','Location','URL'])
+df = df.drop(columns=['Team','Surface','Location','URL','Away_Surface','Away_Location','Away_URL','Home_Surface','Home_Location','Home_URL' ])
 
 # Rename Turf Surface
-df = df.rename(columns={"Turf":"Surface"})
+df = df.rename(columns={"Turf":"Surface","Home_Turf":"Home_Surface","Away_Turf":"Away_Surface"})
+
+# Drop Winner Loser columns
+df = df.drop(columns=['Winner/tie', 'Loser/tie', 'PtsW',
+       'PtsL', 'YdsW', 'TOW', 'YdsL', 'TOL'])
+# %%
+df.columns
+df.loc[df.Week.isnull()]
+
 
 # %%
 # Export to csv

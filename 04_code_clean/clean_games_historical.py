@@ -173,14 +173,47 @@ df = df.rename(columns={"Game_Stadium":"Stadium", "Game_Capacity":"Capacity", "G
 odd_stadiums = pd.read_csv("../05_data_clean/main_stadiums_merge.csv")
 
 # %%
-# Weird stadiums for Saints 2005 season.
-# September 19 2005 already fixed above
+####################
+# Rams 1995 season #
+####################
+
+# Because their Home Stadium was Edward Jones for the first 4 games of the season, there are some duplicates in both Home_ and Away_ sides
+# Because this wasn't a collapse (Saints, Seahawks below) or an agreed upon arrangement (Packers, Bills)
+# I will have to change both "Stadium" and "Home_Stadium"
+
+df.columns
+# Fix Home_ side first
+
+df.loc[(df.Season==1995)&(df.Home_team.str.contains("Rams"))][['Week','Date','Home_team', 'Away_team','Stadium','Home_Stadium']]
+
+# Drop where they used Edward Jones in the first 4 games
+df.drop(df.loc[(df.Season==1995) & (df.Home_team=="St. Louis Rams") & (df.Date.isin(["September 10","September 24","October 12","October 22"])) & (df.Stadium=="Edward Jones Dome ")].index,inplace = True)
+
+# Drop where they used Busch after Oct 22
+df.drop(df.loc[(df.Season==1995) & (df.Home_team=="St. Louis Rams") & (~df.Date.isin(["September 10","September 24","October 12","October 22"])) & (df.Stadium=="Busch Stadium (II) ")].index, inplace = True)
+
+# As an away team
+# First game at Edward Jones was Nov 12, so it'll be the Away_Stadium will be Busch until before that day.
+# Drop where Away_Stadium = Edward Jones
+df.drop(df.loc[(df.Season==1995) & (df.Away_team=="St. Louis Rams") & (df.Date.isin(["September 3","September 17","October 1","October 29","November 5"])) & (df.Away_Stadium=="Edward Jones Dome ")].index, inplace = True)
+# Drop Busch for the other dates
+df.drop(df.loc[(df.Season==1995) & (df.Away_team=="St. Louis Rams")&(~df.Date.isin(["September 3","September 17","October 1","October 29","November 5"])) & (df.Away_Stadium=="Busch Stadium (II) ")].index, inplace = True)
+
+#Done with Rams!
+# %%
+######################
+# Saints 2005 season #
+######################
+
+# Their stadium collapsed, so although technically they had the same home stadium, the "stadium" where the games were played changed
+
+# September 19 2005 already fixed above (Giants game after the dome collapsed)
 
 # Alamodome https://en.wikipedia.org/wiki/2005_New_Orleans_Saints_season
-df.loc[(df.Team == "New Orleans Saints") & (df.Season == 2005) & (df.Date.isin(["October 2","October 16","December 24"])),["Surface", "Capacity","Stadium","Location","URL","lat","lon"]] = odd_stadiums.loc[odd_stadiums["Stadium"] == "Alamodome ", ["Surface","Capacity","Stadium","Location","URL","lat","lon"]].values.tolist()
+df.loc[(df.Home_team == "New Orleans Saints") & (df.Season == 2005) & (df.Date.isin(["October 2","October 16","December 24"])),["Surface", "Capacity","Stadium","Location","URL","lat","lon"]] = odd_stadiums.loc[odd_stadiums["Stadium"] == "Alamodome ", ["Surface","Capacity","Stadium","Location","URL","lat","lon"]].values.tolist()
 
 # Tiger Stadium
-df.loc[(df.Team == "New Orleans Saints") & (df.Season == 2005) & (df.Date.isin(["October 30","November 6","December 4","December 18"])),["Surface","Capacity","Stadium","Location","URL","lat","lon"]] = odd_stadiums.loc[odd_stadiums["Stadium"] == "Tiger Stadium ", ["Surface","Capacity","Stadium","Location","URL","lat","lon"]].values.tolist()
+df.loc[(df.Home_team == "New Orleans Saints") & (df.Season == 2005) & (df.Date.isin(["October 30","November 6","December 4","December 18"])),["Surface","Capacity","Stadium","Location","URL","lat","lon"]] = odd_stadiums.loc[odd_stadiums["Stadium"] == "Tiger Stadium ", ["Surface","Capacity","Stadium","Location","URL","lat","lon"]].values.tolist()
 
 # Changing Tiger Stadium capacity to 79,000 https://en.wikipedia.org/wiki/Tiger_Stadium_(LSU)
 df.loc[(df.Home_team == "New Orleans Saints") & (df.Season == 2005) & (df.Stadium == "Tiger Stadium "), "Turf"] = "Grass"
@@ -189,6 +222,12 @@ df.loc[(df.Home_team == "New Orleans Saints") & (df.Season == 2005) & (df.Stadiu
 
 
 # %%
+###########
+# Seattle #
+###########
+
+# Used Husky stadium for a few games after their ceiling collapsed in 1994
+
 # Seattle - Husky stadium in 1994 https://en.wikipedia.org/wiki/1994_Seattle_Seahawks_season
 df.loc[(df.Home_team == "Seattle Seahawks") & (df.Season == 1994) & (df.Date.isin(["September 18","September 25","October 9"])),["Surface","Capacity","Stadium","Location","URL","lat","lon"]] = odd_stadiums.loc[odd_stadiums["Stadium"] == "Husky Stadium ", ["Surface","Capacity","Stadium","Location","URL","lat","lon"]].values.tolist()
 
@@ -204,6 +243,11 @@ df.loc[(df.Home_team == "Green Bay Packers") & (df.Season == 1994) & (df.Date.is
 
 
 # %%
+#########################
+# Bills Toronto series  #
+#########################
+# Had a series in Canada (so still had to travel even as Home team)
+
 # Bills Roger Centre series https://en.wikipedia.org/wiki/Bills_Toronto_Series
 df.loc[(df.Home_team == "Buffalo Bills") & (df.Season == 2008) & (df.Date.isin(["December 7"])),["Surface","Capacity","Stadium","Location","URL","lat","lon"]] = odd_stadiums.loc[odd_stadiums["Stadium"] == "Rogers Centre ", ["Surface","Capacity","Stadium","Location","URL","lat","lon"]].values.tolist()
 

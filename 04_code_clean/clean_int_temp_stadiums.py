@@ -10,6 +10,20 @@ import numpy as np
 london_games = pd.read_csv("../03_data_scrape/london_games.csv")
 # Read mexico games in
 mexico_games = pd.read_csv("../03_data_scrape/mexico_games.csv")
+
+# %%
+####################
+# Mexico games fix #
+####################
+#49ers and Cardinals played the first Mexico game in 2005, Week 4, but that was *before* the NFL International Series was established. Hahahahahaha
+
+new_row = {'Year':'2005','Date':'October 2','Designatedvisitor':'San Francisco 49ers','Score':'14','Designatedhome team':'Arizona Cardinals','Score.1':'31','Stadium':'Estadio Azteca','Attendance':'103467'}
+
+mexico_games = mexico_games.append(new_row,ignore_index=True)
+
+mexico_games
+
+#%%
 # Concat the 2
 int_series = pd.concat([london_games,mexico_games]).reset_index(drop=True)
 
@@ -78,7 +92,7 @@ int_series = int_series.drop(columns = ["Designatedvisitor", "Score", "Score.1",
 ###############
 
 int_series = int_series.merge(int_stadiums, on = "Stadium", how = "left")
-
+int_series
 # %%
 # Export to csv
 int_series.to_csv("../05_data_clean/int_series.csv", index=False,encoding='utf-8-sig')

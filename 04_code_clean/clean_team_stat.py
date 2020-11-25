@@ -55,12 +55,6 @@ data = data.merge(div_home, how="left",left_on=["Season","Home_team"],right_on=[
 #Merge with div_away
 data = data.merge(div_away, how="left",left_on=["Season","Away_team"],right_on=["Season","Away_team"])
 
-#%%
-data.loc[data.Season==1995]
-
-
-
-
 
 #%%
 
@@ -126,8 +120,7 @@ df["Away_travel"] = df.apply(lambda row: great_circle(row['lon'],row['lat'],row[
 # Distance Away team traveled
 df["Home_travel"] = df.apply(lambda row: great_circle(row['lon'],row['lat'],row['Home_lon'],row['Home_lat']),axis=1)
 
-df["Home_travel"].describe()
 
 # %%
-# Has time rest and distance traveled
-# Tomorrow I can try turning the (preliminary) data into a dyad, split it and see if any ML model will run.
+# Export to csv
+df.to_csv("../05_data_clean/df_team_stat.csv",index=False,encoding='utf-8-sig')

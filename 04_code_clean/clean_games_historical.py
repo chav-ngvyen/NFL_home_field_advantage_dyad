@@ -279,7 +279,8 @@ for i in ["Stadium","Capacity","Location","lat","lon","Turf"]:
     df[f'{i}'] = df[f'{i}_y'].fillna(df[f'{i}_x'])
     df = df.drop(columns = [f'{i}_x', f'{i}_y'])
 
-#%%
+# %%
+
 #Only superbowl & temp stadiums left!!
 
 #################

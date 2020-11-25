@@ -1,32 +1,33 @@
 ﻿Season,Date,Home_team,Stadium,Attendance,Location,lat,lon,Capacity,Turf
-2007,October 28,Miami Dolphins,Wembley Stadium,81176.0,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
-2008,October 26,New Orleans Saints,Wembley Stadium,83226.0,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
-2009,October 25,Tampa Bay Buccaneers,Wembley Stadium,84254.0,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
-2010,October 31,San Francisco 49ers,Wembley Stadium,83941.0,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
-2011,October 23,Tampa Bay Buccaneers,Wembley Stadium,76981.0,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
-2012,October 28,St. Louis Rams,Wembley Stadium,84004.0,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
-2013,September 29,Minnesota Vikings,Wembley Stadium,83518.0,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
-2013,October 27,Jacksonville Jaguars,Wembley Stadium,83559.0,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
-2014,September 28,Oakland Raiders,Wembley Stadium,83436.0,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
-2014,October 26,Atlanta Falcons,Wembley Stadium,83532.0,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
-2014,November 9,Jacksonville Jaguars,Wembley Stadium,83603.0,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
-2015,October 4,Miami Dolphins,Wembley Stadium,83986.0,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
-2015,October 25,Jacksonville Jaguars,Wembley Stadium,84021.0,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
-2015,November 1,Kansas City Chiefs,Wembley Stadium,83624.0,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
-2016,October 2,Jacksonville Jaguars,Wembley Stadium,83798.0,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
-2016,October 23,Los Angeles Rams,Twickenham Stadium,74121.0,"London, United Kingdom",51.456109999999995,-0.34167,75000,Grass
-2016,October 30,Cincinnati Bengals,Wembley Stadium,84448.0,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
-2017,September 24,Jacksonville Jaguars,Wembley Stadium,84592.0,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
-2017,October 1,Miami Dolphins,Wembley Stadium,84423.0,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
-2017,October 22,Los Angeles Rams,Twickenham Stadium,73736.0,"London, United Kingdom",51.456109999999995,-0.34167,75000,Grass
-2017,October 29,Cleveland Browns,Twickenham Stadium,74237.0,"London, United Kingdom",51.456109999999995,-0.34167,75000,Grass
-2018,October 14,Oakland Raiders,Wembley Stadium,84922.0,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
-2018,October 21,Los Angeles Chargers,Wembley Stadium,84301.0,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
-2018,October 28,Jacksonville Jaguars,Wembley Stadium,85870.0,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
-2019,October 6,Oakland Raiders,Tottenham Hotspur Stadium,60463.0,"London, United Kingdom",51.604440000000004,-0.06639,62303,Turf
-2019,October 13,Tampa Bay Buccaneers,Tottenham Hotspur Stadium,60087.0,"London, United Kingdom",51.604440000000004,-0.06639,62303,Turf
-2019,October 27,Los Angeles Rams,Wembley Stadium,83720.0,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
-2019,November 3,Jacksonville Jaguars,Wembley Stadium,84771.0,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
+2007,October 28,Miami Dolphins,Wembley Stadium,81176,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
+2008,October 26,New Orleans Saints,Wembley Stadium,83226,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
+2009,October 25,Tampa Bay Buccaneers,Wembley Stadium,84254,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
+2010,October 31,San Francisco 49ers,Wembley Stadium,83941,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
+2011,October 23,Tampa Bay Buccaneers,Wembley Stadium,76981,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
+2012,October 28,St. Louis Rams,Wembley Stadium,84004,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
+2013,September 29,Minnesota Vikings,Wembley Stadium,83518,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
+2013,October 27,Jacksonville Jaguars,Wembley Stadium,83559,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
+2014,September 28,Oakland Raiders,Wembley Stadium,83436,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
+2014,October 26,Atlanta Falcons,Wembley Stadium,83532,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
+2014,November 9,Jacksonville Jaguars,Wembley Stadium,83603,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
+2015,October 4,Miami Dolphins,Wembley Stadium,83986,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
+2015,October 25,Jacksonville Jaguars,Wembley Stadium,84021,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
+2015,November 1,Kansas City Chiefs,Wembley Stadium,83624,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
+2016,October 2,Jacksonville Jaguars,Wembley Stadium,83798,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
+2016,October 23,Los Angeles Rams,Twickenham Stadium,74121,"London, United Kingdom",51.456109999999995,-0.34167,75000,Grass
+2016,October 30,Cincinnati Bengals,Wembley Stadium,84448,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
+2017,September 24,Jacksonville Jaguars,Wembley Stadium,84592,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
+2017,October 1,Miami Dolphins,Wembley Stadium,84423,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
+2017,October 22,Los Angeles Rams,Twickenham Stadium,73736,"London, United Kingdom",51.456109999999995,-0.34167,75000,Grass
+2017,October 29,Cleveland Browns,Twickenham Stadium,74237,"London, United Kingdom",51.456109999999995,-0.34167,75000,Grass
+2018,October 14,Oakland Raiders,Wembley Stadium,84922,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
+2018,October 21,Los Angeles Chargers,Wembley Stadium,84301,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
+2018,October 28,Jacksonville Jaguars,Wembley Stadium,85870,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
+2019,October 6,Oakland Raiders,Tottenham Hotspur Stadium,60463,"London, United Kingdom",51.604440000000004,-0.06639,62303,Turf
+2019,October 13,Tampa Bay Buccaneers,Tottenham Hotspur Stadium,60087,"London, United Kingdom",51.604440000000004,-0.06639,62303,Turf
+2019,October 27,Los Angeles Rams,Wembley Stadium,83720,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
+2019,November 3,Jacksonville Jaguars,Wembley Stadium,84771,"London, United Kingdom",51.55583,-0.27971999999999997,86000,Grass
 2016,November 21,Oakland Raiders,Estadio Azteca,76473.0,"Mexico City, Mexico",19.303060000000002,-99.15056,87523,Grass
 2017,November 19,Oakland Raiders,Estadio Azteca,77357.0,"Mexico City, Mexico",19.303060000000002,-99.15056,87523,Grass
 2019,November 18,Los Angeles Chargers,Estadio Azteca,76252.0,"Mexico City, Mexico",19.303060000000002,-99.15056,87523,Grass
+2005,October 2,Arizona Cardinals,Estadio Azteca,103467,"Mexico City, Mexico",19.303060000000002,-99.15056,87523,Grass

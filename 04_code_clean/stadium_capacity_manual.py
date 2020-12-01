@@ -1,5 +1,5 @@
 #%%
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString, Tag
 import requests
 import codecs
 import os
@@ -21,11 +21,163 @@ links = df.URL.unique()
 
 # %%
 #Build a scraper
+#url = 'https://en.wikipedia.org/wiki/Lambeau_Field'
 #url = 'https://en.wikipedia.org/wiki/Angel_Stadium'
 #url = 'https://en.wikipedia.org/wiki/Bills_Stadium'
-url = 'https://en.wikipedia.org/wiki/Oakland_Coliseum'
+#url = 'https://en.wikipedia.org/wiki/Oakland_Coliseum'
+url = 'https://en.wikipedia.org/wiki/Busch_Memorial_Stadium#Seating_capacity'
 page = requests.get(url)
 soup = BeautifulSoup(page.content,'html.parser')
+
+
+
+#%%
+
+header2 = soup.select('h2:contains("apacity")')
+header3 = soup.select('h3:contains("apacity")')
+
+header_list = header2 + header3
+h = header_list[0]
+h
+# %%
+html = u""
+cap_list = list()
+flat_list = list()
+df = None
+
+
+for tag in h.find_next_siblings():
+    if tag.name == h.name:
+        break
+
+    else:
+        html += str(tag)
+        #print(html)
+
+        try:
+            cap_text = tag.find_all('caption')
+            #print(cap_text)
+            cap_list.append(cap_text)
+
+            #if len(cap_text.get_text(strip=True)) == 0:
+            #    cap_text.extract()
+
+        except AttributeError:
+            continue
+        #cap_list.append(cap_text)
+        #Remove the empty element
+        cap_list = [x for x in cap_list if x!= []]
+
+        # Check is cap_list is already is a nested list
+        if any(isinstance(i, list) for i in cap_list) is True:
+        # Flatten the list
+            #cap_list = [item for items in cap_list for item in items]
+            flat_list = [item for sublist in cap_list for item in sublist]
+            #print(flat_list)
+        else:
+            flat_list = cap_list
+        #pr = tag.find_all('table',{'class':'wikitable'})
+
+df = pd.read_html(html, attrs ={'class':'wikitable'})
+
+for i in range(len(df)):
+    try:
+        df[i]['sports'] = flat_list[i].get_text(strip=True)
+    except IndexError:
+        df[i]['sports'] = 'Football'
+df
+#%%
+for tag in h.find_next_siblings():
+    if tag.name == h.name:
+         break
+    else:
+        html += str(tag)
+html
+#%%
+
+type(cap_list)
+flat_list
+any(isinstance(i, list) for i in cap_list)
+cap_text
+flat_list[i]
+cap_list[i]
+flat_list = [item for sublist in t for item in sublist]
+df
+#%%
+len(cap)
+print(html)
+#%%
+df
+cap_list[0].get_text(strip=True)
+df[0]['sports'] = cap_list[0].get_text(strip=True)
+df[1]
+len(df)
+
+pd.DataFrame.from_dict(test, orient = 'index')
+pd.DataFrame(test)
+
+for i in range(len(df)):
+    df[i]['Sports']= ""
+    [df[i]['Sports'] = j for j in cap_list]
+df[0]
+pd.concat(pd.read_html(html))
+
+#%%
+for header in soup.find_all(h.name):
+    thisNode = h
+    nextNode = h.find_next(h.name)
+    if header == thisNode:
+        print(header)
+# %%
+for header in header_list:
+    nextNode = header
+    while True:
+        nextNode = nextNode.nextSibling
+        if nextNode.name == header.name:
+            break
+        try:
+            tag_name = nextNode.name
+        except AttributeError:
+            continue
+        if tag_name == "table":
+            test = nextNode
+        else:
+            continue
+        # if nextNode is None:
+        #     break
+        # # if isinstance(nextNode, NavigableString):
+        # #     print (nextNode.strip())
+        # # if isinstance(nextNode, Tag):
+        #     if nextNode.name == "h3":
+        #         break
+        #     #table = nextNode.find('table')
+        #     print (nextNode.get_text(strip=True).strip())
+pd.read_html(str(test))[0]
+
+
+
+#%%
+nextNode = h
+while True:
+    nextNode = nextNode.Sibling
+h.name
+h
+h.find_next(h.name)
+next_table = h.find_next_siblings('table')
+next_table
+#captioncaption = h.find_next('caption')
+len(tabletable)
+tabletable
+#len(captioncaption)
+df = []
+len = len(tabletable)/2
+pd.read_html(str(next_table))
+for i in range(0,1):
+    tab = pd.read_html(str(tabletable))[i]
+    df.append(tab)
+df
+#type(tabletable)
+
 #%%
 
 for header in soup.select('h3:contains("apacity")'):
@@ -130,7 +282,60 @@ len(header3)
 
 header_list = header2 + header3
 header_list
+#%%
+sib1 = None
+sib1 = header_list[0].find_next_sibling()
+caption1 = sib1.find("caption").get_text()
+if "Baseball" in caption1:
+    sib2 = sib1.find_next_sibling()
+    #caption2 = sib2.find("caption").get_text()
+caption1
+# %%
+cap = []
+table = None
+for h in header_list:
+    siblings = h.find_next_siblings()
+    for s in siblings:
+        caption = s.find_all("caption")
+        c_length = len(caption)
+        if c_length == 0:
+            break
+        elif c_length != 0:
+            for c in caption:
+                t = c.find_parent("table")
+                tab = pd.read_html(str(t))
+                print(tab)
+                print(type(tab[0]))
+                #tab.append(c)
+                #print(type(tab))
+            #    df = pd.read_html(t)
+#test =cap[1]
+#pd.read_html(str(cap[0]))
+#pd.read_html(tab)
 
+#%%
+pd.read_html(str(sib1))[2]
+# %%
+header2 = soup.select('h2:contains("apacity")')
+header3 = soup.select('h3:contains("apacity")')
+
+header_list = header2 + header3
+
+h = header_list[0]
+h
+tabletable = h.find_next('table')
+len(tabletable)
+df = []
+for i in range(len(tabletable)-1):
+    tab = pd.read_html(str(tabletable))[i]
+    df.append(tab)
+
+pd.concat(df)
+
+range(len(tabletable))
+type(pd.read_html(str(tabletable))[0])
+for i in range(len(tabletable)):
+    print(i)
 # %%
 angel = None
 angel_table= None
@@ -218,3 +423,6 @@ print(angel)
 #type(sib)
 type(sib)
 #sib[0]
+
+
+#%%

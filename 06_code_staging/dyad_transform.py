@@ -7,6 +7,7 @@ import numpy as np
 # Read-in the clean-ish df
 df = pd.read_csv("../05_data_clean/df_team_stat.csv")
 
+
 # %%
 # Drop some columns
 df.columns
@@ -158,37 +159,20 @@ df["Same_surface"] = np.where(df["Surface"]==df["Team_A_Surface"],"Yes","No")
 
 
 # Next part is the attendance/ capacity thing - will leave that for now
-#%%
-# # Attendance/ Capacity
-# # I am only noticing this because I'm checking for extremes in attendance percentage
-#
-# # Fix Capacity a little
-# # Capacity for Cowboys is still not a number
-# df.loc[df.Capacity=='80,000–100,000','Capacity'] = '105,000'
-#
-# #Main Wiki table had wrong capacity of Baltimore stadium https://en.wikipedia.org/wiki/Chronology_of_home_stadiums_for_current_National_Football_League_teams
-# #(based on this https://en.wikipedia.org/wiki/Memorial_Stadium_(Baltimore)#cite_note-38)
-# df.loc[(df.Stadium == "Memorial Stadium ") & (df.Team_A == "Baltimore Ravens"),"Capacity"] = '65,248'
-# df.loc[(df.Stadium == "Memorial Stadium ") & (df.Team_B == "Baltimore Ravens"),"Capacity"] = '65,248'
-#
-# # Wiki table also wrong about capacity for Busch Stadium II
-# # https://en.wikipedia.org/wiki/Busch_Memorial_Stadium
-# df.loc[(df.Stadium == "Busch Stadium (II) "),"Capacity"] = '60,000'
-#
-#
-# # Convert to float
-# df.Capacity = df.Capacity.str.replace(',','').astype(float)
-#
-# df["Attendance"] = df["attendance"]/df["Capacity"]*100
-# df.loc[df.Stadium=="AT&T Stadium"][["Capacity","attendance"]]
-# df.loc[df.Attendance == df.Attendance.max()][["Season","Week","Team_A","Team_B","Stadium","Team_A_Stadium","Team_B_Stadium","attendance","Capacity"]]
-#
-# df.sort_values(by="Attendance")[["Season","Week","Team_A","Team_B","Stadium","Capacity","Attendance","attendance"]].tail(200)
-#
-#
-# Stad
-# df.loc[df.Attendance > 100]['Attendance'].describe()
-#
+# %%
+# Attendance/ Capacity
+
+# Capacity for Cowboys is still not a number
+df.loc[df.Capacity=='80,000–100,000','Capacity'] = "105000"
+
+# %%
+
+
+df["Attendance_pct"] = df["attendance"]/df["Capacity"]*100
+df.Attendance_pct.describe()
+
+
+
 # %%
 ################
 # Get the dyad #
@@ -197,7 +181,7 @@ df["Same_surface"] = np.where(df["Surface"]==df["Team_A_Surface"],"Yes","No")
 df.columns
 
 
-dyad = df[["Week","Season","Game_type","Team_A","Team_B","Stadium","Surface","attendance","Time_rest","Miles_traveled","Points_diff","Outcome","Yards_diff","Turnover_diff","Rivalry","Same_surface","Season_points_diff","Season_margins","Division_rank", "Field"]]
+dyad = df[["Week","Season","Game_type","Team_A","Team_B","Stadium","Surface","attendance","Capacity","Attendance_pct","Time_rest","Miles_traveled","Points_diff","Outcome","Yards_diff","Turnover_diff","Rivalry","Same_surface","Season_points_diff","Season_margins","Division_rank", "Field"]]
 
 
 # %%

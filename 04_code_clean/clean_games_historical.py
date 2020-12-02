@@ -84,8 +84,8 @@ for i in ["Pts","Yds","TO"]:
 
 # I will merge the stadium file here, creating columns for the Home team's stadium, the Away team's stadium, and the game Stadium (where the game is actually played at)
 
-
-main_stadiums = pd.read_csv("../05_data_clean/main_stadiums_long.csv")
+main_stadiums = pd.read_csv("../05_data_clean/main_stadiums_long_capacity_year.csv")
+#main_stadiums = pd.read_csv("../05_data_clean/main_stadiums_long.csv")
 # %%
 # There are 32 teams but 65 stadiums
 main_stadiums.Team.nunique()

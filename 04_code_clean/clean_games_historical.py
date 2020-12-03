@@ -377,7 +377,9 @@ df = df.drop(columns=["Attendance","attendance_x","attendance_y"])
 
 df.columns
 # Drop irrelevant columns
-df = df.drop(columns=['Team','Surface','Location','URL','Away_Surface','Away_Location','Away_URL','Home_Surface','Home_Location','Home_URL' ])
+#df = df.drop(columns=['Team','Surface','Location','URL','Away_Surface','Away_Location','Away_URL','Home_Surface','Home_Location','Home_URL' ])
+
+df = df.drop(columns=['Team','Surface','URL','Away_Surface','Away_Location','Away_URL','Home_Surface','Home_Location','Home_URL' ])
 
 # Rename Turf Surface
 df = df.rename(columns={"Turf":"Surface","Home_Turf":"Home_Surface","Away_Turf":"Away_Surface"})

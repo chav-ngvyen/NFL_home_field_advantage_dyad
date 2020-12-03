@@ -90,6 +90,10 @@ away_diff=df.groupby(["Season","Away_team"])["datetime"].diff().rename("Away_tim
 df = df.merge(home_diff, left_index=True,right_index=True)
 df = df.merge(away_diff, left_index=True, right_index=True)
 
+# %%
+df.loc[df.Home_team=="New York Jets"]
+
+
 #%%
 #####################
 # Distance traveled #

@@ -1,0 +1,4 @@
+#Don't track
+/.ipynb_checkpoints
+.DS_Store
+*.mp4

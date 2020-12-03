@@ -167,11 +167,11 @@ df.loc[df.Capacity=='80,000–100,000','Capacity'] = "105000"
 
 # %%
 
-
+df.Capacity = df.Capacity.str.replace(",","").astype(float)
 df["Attendance_pct"] = df["attendance"]/df["Capacity"]*100
 df.Attendance_pct.describe()
 
-
+df.Time_rest
 
 # %%
 ################
@@ -181,9 +181,12 @@ df.Attendance_pct.describe()
 df.columns
 
 
-dyad = df[["Week","Season","Game_type","Team_A","Team_B","Stadium","Surface","attendance","Capacity","Attendance_pct","Time_rest","Miles_traveled","Points_diff","Outcome","Yards_diff","Turnover_diff","Rivalry","Same_surface","Season_points_diff","Season_margins","Division_rank", "Field"]]
+dyad = df[["Week","Season","Game_type","Team_A","Team_B","Team_A_Division","Stadium","Location","Surface","attendance","Capacity","Attendance_pct","Time_rest","Miles_traveled","Points_diff","Outcome","Yards_diff","Turnover_diff","Rivalry","Same_surface","Season_points_diff","Season_margins","Division_rank", "Field"]]
 
 
 # %%
 #export the dyad to csv
 dyad.to_csv("../07_data_staged/dyadic_data.csv", index=False,encoding='utf-8-sig')
+
+
+df.Time_rest

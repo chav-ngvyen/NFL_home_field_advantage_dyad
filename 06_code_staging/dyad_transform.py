@@ -7,7 +7,6 @@ import numpy as np
 # Read-in the clean-ish df
 df = pd.read_csv("../05_data_clean/df_team_stat.csv")
 
-
 # %%
 # Drop some columns
 df.columns
@@ -76,11 +75,13 @@ df = pd.concat([home_away,away_home],sort=False).sort_index()
 
 # Eureka!
 
+
 # %%
 ##################
 # Clean the dyad #
 ##################
 
+# %%
 # Reset index
 df.reset_index(drop=True, inplace=True)
 
@@ -89,6 +90,13 @@ df.head()
 # Rename Team_A and Team_B columns
 df.rename(columns={'Team_A_team':'Team_A','Team_B_team':'Team_B'}, inplace=True)
 
+# %%
+# Time rest between games
+
+df["datetime"] = pd.to_datetime(df["datetime"])
+df["Time_rest"] = df.groupby(["Season","Team_A"])["datetime"].diff()
+
+df["Time_rest"].describe()
 
 # %%
 
@@ -165,6 +173,9 @@ df["Same_surface"] = np.where(df["Surface"]==df["Team_A_Surface"],"Yes","No")
 # Capacity for Cowboys is still not a number
 df.loc[df.Capacity=='80,000–100,000','Capacity'] = "105000"
 
+
+
+df.Capacity.describe()
 # %%
 
 df.Capacity = df.Capacity.str.replace(",","").astype(float)
@@ -189,4 +200,6 @@ dyad = df[["Week","Season","Game_type","Team_A","Team_B","Team_A_Division","Stad
 dyad.to_csv("../07_data_staged/dyadic_data.csv", index=False,encoding='utf-8-sig')
 
 
-df.Time_rest
+#%%
+
+dyad.dtypes

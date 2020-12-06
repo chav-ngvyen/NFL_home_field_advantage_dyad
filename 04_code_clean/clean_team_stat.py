@@ -72,27 +72,30 @@ df["Year"] = df["Season"]
 df.loc[(df["Date"].str.contains("January"))|(df["Date"].str.contains("February")),"Year"] = df["Season"] +1
 #Convert Year to string
 df["Year"]=df["Year"].astype(str)
+# %%
 
 #Merge together Date, Year and Time to create datetime object
 df["datetime"]=df["Date"] + ' ' + df["Year"] + ' ' +df["Time"]
 #Convert that to datetime
 df["datetime"] = pd.to_datetime(df["datetime"])
+
+# %%
+
+#df.groupby(["Season","Home_team"])["datetime"].diff().describe()
+
+
 #%%
-#Calculate the time between games
-
-#Time difference for home team
-home_diff=df.groupby(["Season","Home_team"])["datetime"].diff().rename("Home_timerest")
-#Time difference for away team
-away_diff=df.groupby(["Season","Away_team"])["datetime"].diff().rename("Away_timerest")
-
-# %%
-#Merge back to df
-df = df.merge(home_diff, left_index=True,right_index=True)
-df = df.merge(away_diff, left_index=True, right_index=True)
-
-# %%
-df.loc[df.Home_team=="New York Jets"]
-
+# #Calculate the time between games
+#
+# #Time difference for home team
+# home_diff=df.groupby(["Season","Home_team"])["datetime"].diff().rename("Home_timerest")
+# #Time difference for away team
+# away_diff=df.groupby(["Season","Away_team"])["datetime"].diff().rename("Away_timerest")
+#
+# # %%
+# #Merge back to df
+# df = df.merge(home_diff, left_index=True,right_index=True)
+# df = df.merge(away_diff, left_index=True, right_index=True)
 
 #%%
 #####################

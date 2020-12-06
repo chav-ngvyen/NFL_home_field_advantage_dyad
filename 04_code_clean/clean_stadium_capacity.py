@@ -13,6 +13,14 @@ df = pd.read_csv('../03_data_scrape/stadium_capacity.csv')
 df['Year_start'] = df['Years'].str.split("–",expand=True)[0]
 df['Year_end'] = df['Years'].str.split("–",expand=True)[1]
 
+
+#%%
+df.loc[df.URL == "https://en.wikipedia.org/wiki/Lambeau_Field"]
+
+
+#%%
+
+
 df.Year_end.unique()
 
 # Replace present with 2019
@@ -57,7 +65,7 @@ res.URL.nunique()
 
 #%%
 #Import the other file in
-dat = pd.read_csv('../03_data_scrape/stadium_capacity_inforcard.csv')
+dat = pd.read_csv('../03_data_scrape/stadium_capacity_infocard.csv')
 
 # Group by
 dat = dat.groupby(["URL","Capacity"]).sum().reset_index()
@@ -70,7 +78,6 @@ dat = pd.merge(dat,count[["URL","Count"]],on="URL",how="left")
 #%%
 
 dat['Count'].unique()
-has_year.URL.nunique()
 dat.dtypes
 dat.reset_index(drop=True, inplace=True)
 
@@ -138,6 +145,32 @@ df.URL.nunique()
 # Export
 df.to_csv("../05_data_clean/stadium_capacity_year.csv", index=False,encoding='utf-8-sig')
 
+# %%
+
+#Check for missingness
+test = df.groupby(["URL"])["Years_relevant"].apply(list).reset_index()
+
+test.loc[:, 'First'] = test.Years_relevant.map(lambda x: x[0])
+test.loc[:, 'Last'] = test.Years_relevant.map(lambda x: x[-1])
+test.URL.unique()
+
+test.loc[test.URL == "https://en.wikipedia.org/wiki/Memorial_Stadium_(Champaign)"]
+
+
+
+#test.Years_relevant[0][-1]
+
+df.
+
+# %%
+
+df.loc[df.URL =="https://en.wikipedia.org/wiki/Lambeau_Field"]
+
+
+
+
+
+
 #%%
 # Now I will merge this to main_stadiums_long
 dat = pd.read_csv("../05_data_clean/main_stadiums_long.csv")
@@ -153,3 +186,9 @@ m = m.drop(columns=["Capacity_x","Capacity_y","_merge"])
 # %%
 # Export to csv
 m.to_csv("../05_data_clean/main_stadiums_long_capacity_year.csv", index=False,encoding='utf-8-sig')
+
+
+#%%
+m.loc[m.Stadium == "Lambeau Field "].Years_relevant
+
+m.loc[m.Stadium.str.contains("Lambeau")]

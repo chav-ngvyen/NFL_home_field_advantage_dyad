@@ -245,7 +245,8 @@ plot4
 # )
 #
 # plot4
+df.Season.nunique()
+example = df.loc[(df.Week=="10") & (df.Season==2018)]
 
-example = df.loc[(df.Week=="7") & (df.Season==2018)]
-
-example[["Season","Week","Team_A","Team_B","Outcome","Miles_traveled","Time_rest_days","Capacity","attendance","Surface","Same_surface"]].head(10)
+show = example[["Season","Week","Team_A","Team_B","Outcome","Miles_traveled","Time_rest_days","Capacity","attendance","Surface","Same_surface","Rivalry"]].head(10)
+show.round(2)

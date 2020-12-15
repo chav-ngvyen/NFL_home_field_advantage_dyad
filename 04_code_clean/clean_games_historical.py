@@ -2,12 +2,19 @@
 import csv
 import pandas as pd
 import numpy as np
+
+from plotnine import *
+import warnings
+warnings.filterwarnings("ignore")
+
+
 # %%
 
 # Read the scraped table as pandas df
 games_historical = pd.read_csv("../03_data_scrape/games_historical_raw.csv")
 
 games_historical
+
 # %%
 ##########################
 # Drop unneccessary rows #
@@ -164,7 +171,9 @@ df = df.rename(columns={"Team_x":"Team"})
 #Rename the "Game_" columns back to normal
 df = df.rename(columns={"Game_Stadium":"Stadium", "Game_Capacity":"Capacity", "Game_Surface":"Surface", "Game_Location":"Location","Game_URL":"URL","Game_lat":"lat","Game_lon":"lon","Game_Turf":"Turf"})
 
+# %%
 
+df.loc[df.URL =="https://en.wikipedia.org/wiki/Soldier_Field","Capacity"]
 # %%
 #############################
 # Next, do the odd stadiums #
@@ -270,14 +279,24 @@ df.loc[(df.Home_team == "Buffalo Bills") & (df.Season == 2013) & (df.Date.isin([
 ########################
 int_series = pd.read_csv("../05_data_clean/int_series.csv")
 
-# Merge df with int_series
-df = df.merge(int_series, left_on=["Season","Date","Home_team"], right_on=["Season","Date","Home_team"],how="left")
+int_series
 
-# Use a for loop to loop through the duplicated columns, fill one with the other, and drop the duplicates
-# Similar to how I would use a local string list in `i' in Stata!
+# Merge df with int_series
+df = df.merge(int_series, left_on=["Season","Date","Home_team"], right_on=["Season","Date","Home_team"],how="left", indicator = True)
+df.columns
+
+
+
+# If _merge == both, then Stadium, Capacity, Location, lat, lon, Turf is from _y
 for i in ["Stadium","Capacity","Location","lat","lon","Turf"]:
-    df[f'{i}'] = df[f'{i}_y'].fillna(df[f'{i}_x'])
+    df[f'{i}'] = np.where(df["_merge"] == "both", df[f'{i}_y'],df[f'{i}_x'])
     df = df.drop(columns = [f'{i}_x', f'{i}_y'])
+
+
+# Drop merge
+df.drop(columns="_merge", inplace=True)
+
+df.loc[df.Stadium == "Wembley Stadium"]["Capacity"]
 
 # %%
 
@@ -289,33 +308,53 @@ for i in ["Stadium","Capacity","Location","lat","lon","Turf"]:
 temp_stadiums = pd.read_csv("../05_data_clean/temp_stadiums.csv")
 
 # Similar merge as above
-df = df.merge(temp_stadiums, left_on=["Season","Date","Home_team"], right_on=["Season","Date","Home_team"],how="left")
+df = df.merge(temp_stadiums, left_on=["Season","Date","Home_team"], right_on=["Season","Date","Home_team"],how="left", indicator=True)
 
 df.columns
 
+
+
 # Similar drop as above
+#for i in ["Stadium","Capacity","URL","lat","lon","Turf"]:
+#    df[f'{i}'] = df[f'{i}_y'].fillna(df[f'{i}_x'])
+#    df = df.drop(columns = [f'{i}_x', f'{i}_y'])
+
+# If _merge == both, then Stadium, Capacity, Location, lat, lon, Turf is from _y
 for i in ["Stadium","Capacity","URL","lat","lon","Turf"]:
-    df[f'{i}'] = df[f'{i}_y'].fillna(df[f'{i}_x'])
+    df[f'{i}'] = np.where(df["_merge"] == "both", df[f'{i}_y'],df[f'{i}_x'])
     df = df.drop(columns = [f'{i}_x', f'{i}_y'])
+
+# Drop merge
+df.drop(columns="_merge", inplace=True)
+df.loc[df.Stadium == "Wembley Stadium"]["Capacity"]
+
+#%%
+df.loc[df.Stadium == "Wembley Stadium"]["Capacity"]
+
 
 # %%
 
 ######################
 # Superbowl stadiums #
 ######################
-df.columns
 
 sb = pd.read_csv("../05_data_clean/superbowl_stadiums.csv")
 
 # "Week" is just a column of "SuperBowl"
-df = df.merge(sb, left_on=["Season","Week"], right_on=["Season","Week"],how="left")
+df = df.merge(sb, left_on=["Season","Week"], right_on=["Season","Week"],how="left",indicator=True)
 
 # %%
+df.columns
+
+
 # Similar drop as above
 for i in ["Stadium","Capacity","lat","lon","Turf","Attendance"]:
-    df[f'{i}'] = df[f'{i}_y'].fillna(df[f'{i}_x'])
+    df[f'{i}'] = np.where(df["_merge"] == "both", df[f'{i}_y'],df[f'{i}_x'])
     df = df.drop(columns = [f'{i}_x', f'{i}_y'])
 
+df.columns
+
+df.loc[df.Stadium == "Wembley Stadium"]["Capacity"]
 
 # %%
 ##################################
@@ -379,7 +418,7 @@ df.columns
 # Drop irrelevant columns
 #df = df.drop(columns=['Team','Surface','Location','URL','Away_Surface','Away_Location','Away_URL','Home_Surface','Home_Location','Home_URL' ])
 
-df = df.drop(columns=['Team','Surface','URL','Away_Surface','Away_Location','Away_URL','Home_Surface','Home_Location','Home_URL' ])
+df = df.drop(columns=['_merge','Team','Surface','URL','Away_Surface','Away_Location','Away_URL','Home_Surface','Home_Location','Home_URL' ])
 
 # Rename Turf Surface
 df = df.rename(columns={"Turf":"Surface","Home_Turf":"Home_Surface","Away_Turf":"Away_Surface"})
@@ -390,8 +429,145 @@ df = df.drop(columns=['Winner/tie', 'Loser/tie', 'PtsW',
 # %%
 df.columns
 df.loc[df.Week.isnull()]
+#%%
+df.loc[df.Stadium == "Wembley Stadium"]["Capacity"]
+
+# %%
+# Unique Stadium
+df.Stadium.nunique()
+# Strip training space
+df.Stadium = df.Stadium.str.rstrip()
+df.Stadium.nunique()
+# 68 sounds right
+
+df.loc[df.Stadium == "Wembley Stadium"]["Capacity"]
+# %%
+dta = df.copy(deep=True)
+#%%
+dta.loc[dta.Capacity=='80,000–100,000','Capacity'] = "105000"
+
+dta["Cap_replace"]=dta.Capacity.astype(str).str.replace(",","").astype(float)
+
+dta.loc[dta.Stadium=="Wembley Stadium"][["Capacity"]]
 
 
+# %%
+# Capacity for Cowboys is still not a number
+df.loc[df.Capacity=='80,000–100,000','Capacity'] = "105000"
+# Strip commas
+df.Capacity = df.Capacity.astype(str).str.replace(",","").astype(float)
+
+
+# %%
+df.loc[df.Stadium == "Wembley Stadium"]["Capacity"]
+
+
+df.Capacity.describe()
+# %%
+# Check for duplicates
+test = df.groupby(["Season","Stadium","Capacity"])["Capacity"].nunique().reset_index(name="Cap_count")
+
+test.loc[test.Cap_count!=1]
+test.loc[test.Stadium=="Hard Rock Stadium"]
+
+# %%
+#####################################################
+# Manual check of stadium capacity for weird spikes #
+#####################################################
+
+test = df.groupby(["Season","Stadium"])["Capacity"].max().reset_index()
+test.Stadium.nunique()
+# 84
+test.Stadium = test.Stadium.str.rstrip()
+test.Stadium.nunique()
+#68
+test = test.sort_values(by=["Stadium","Season"])
+
+
+(ggplot(test, aes(x="Season", y = "Capacity")) +
+    geom_line() +
+    facet_wrap("Stadium") +
+    theme_classic() +
+    theme(figure_size=(20,20))
+    )
+
+
+#%%
+
+
+test.loc[test.Stadium=="Raymond James Stadium"]
+
+# %%
+##################################
+# Manual fix of the weird spikes #
+##################################
+
+# Soldier Field
+df.loc[(df.Stadium=="Soldier Field") & (df.Season<2003), "Capacity"] = 66944
+df.loc[(df.Stadium=="Soldier Field") & (df.Season>=2003), "Capacity"] = 61500
+
+# State Farm
+df.loc[(df.Stadium=="State Farm Stadium"), "Capacity"] = 63000
+
+# TIAA Bank Field
+df.loc[(df.Stadium=="TIAA Bank Field") & (df.Season>=2002) & (df.Season <= 2004) , "Capacity"] = 76877
+
+# US Bank
+df.loc[(df.Stadium=="U.S. Bank Stadium") & (df.Season==2017), "Capacity"] = 66655
+
+# Raymond James
+df.loc[(df.Stadium=="Raymond James Stadium") & (df.Season <= 2000), "Capacity"] = 66321
+df.loc[(df.Stadium=="Raymond James Stadium") & (df.Season>=2008) & (df.Season <=2012), "Capacity"] = 65856
+df.loc[(df.Stadium=="Raymond James Stadium") & (df.Season>=2013) & (df.Season <=2015), "Capacity"] = 65890
+
+# Surprisingly, Oakland Coliseum (RingCentral Coliseum in the dataset) does not need to be changed
+
+# Superdome
+df.loc[(df.Stadium=="Mercedes-Benz Superdome") & (df.Season==1996), "Capacity"] = 64992
+df.loc[(df.Stadium=="Mercedes-Benz Superdome") & (df.Season==2001), "Capacity"] = 70020
+# 2005 does not matter because of the collapse
+df.loc[(df.Stadium=="Mercedes-Benz Superdome") & (df.Season>=2011), "Capacity"] = 73208
+
+# NRG
+df.loc[(df.Stadium=="NRG Stadium") & (df.Season==2003), "Capacity"] = 71054
+df.loc[(df.Stadium=="NRG Stadium") & (df.Season==2016), "Capacity"] = 71795
+
+# Lambeau
+df.loc[(df.Stadium=="Lambeau Field") & (df.Season==2011), "Capacity"] = 72928
+
+# Levi's # Gonna set it to 75k because attendance usually goes beyong 68.5
+df.loc[(df.Stadium=="Levi's Stadium"), "Capacity"] = 75000
+
+# Lucas Oil
+df.loc[(df.Stadium=="Lucas Oil Stadium"), "Capacity"] = 67000
+
+# Ford Field
+df.loc[(df.Stadium=="Ford Field"), "Capacity"] = 65000
+
+
+#%%
+df.loc[(df.Stadium=="Mercedes-Benz Stadium")]
+
+# %%
+
+
+
+
+
+
+# Check again
+test = df.groupby(["Season","Stadium"])["Capacity"].max().reset_index()
+test.Stadium.nunique()
+
+test = test.sort_values(by=["Stadium","Season"])
+
+
+(ggplot(test, aes(x="Season", y = "Capacity")) +
+    geom_line() +
+    facet_wrap("Stadium") +
+    theme_classic() +
+    theme(figure_size=(20,20))
+    )
 # %%
 # Export to csv
 df.to_csv("../05_data_clean/games_historical_clean.csv" ,index=False,encoding='utf-8-sig')

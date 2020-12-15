@@ -154,19 +154,11 @@ test.loc[:, 'First'] = test.Years_relevant.map(lambda x: x[0])
 test.loc[:, 'Last'] = test.Years_relevant.map(lambda x: x[-1])
 test.URL.unique()
 
-test.loc[test.URL == "https://en.wikipedia.org/wiki/Memorial_Stadium_(Champaign)"]
+print(test.loc[test.URL == "https://en.wikipedia.org/wiki/Memorial_Stadium_(Champaign)"]["Years_relevant"])
 
 
 
 #test.Years_relevant[0][-1]
-
-df.
-
-# %%
-
-df.loc[df.URL =="https://en.wikipedia.org/wiki/Lambeau_Field"]
-
-
 
 
 
@@ -174,21 +166,57 @@ df.loc[df.URL =="https://en.wikipedia.org/wiki/Lambeau_Field"]
 #%%
 # Now I will merge this to main_stadiums_long
 dat = pd.read_csv("../05_data_clean/main_stadiums_long.csv")
+# %%
 
+dat.duplicated(subset=["Years","Stadium","Capacity"])
+
+
+
+#%%
 # Merge
 m = dat.merge(df, left_on = ["URL","Years_relevant"],right_on = ["URL","Years_relevant"], how = "left", indicator=True)
+m.Team.nunique()
 
+
+# %%
+
+m = m.sort_values(by=["Stadium","Years_relevant"])
+
+#%%
+# Drop duplicates
+m.drop_duplicates(subset=["Team","Stadium","Years_relevant","Capacity_x"], inplace = True)
+
+m.Team.nunique()
+
+
+
+
+
+# %%
+m.loc[m.Capacity_x.isnull()]
+
+
+# %%
 # Capacity_y is Capacity with year
 m["Capacity"] = m["Capacity_y"].fillna(m["Capacity_x"])
 
 m = m.drop(columns=["Capacity_x","Capacity_y","_merge"])
 
+
+m.Team.nunique()
+
+# %%
+# All the duplicates are Jets & Giants (since *literally* forever) and Rams & Chargers at SoFi for the 2020 season onwards.
+
+m.columns
+
+# %%
+
+
+
+m.Stadium = m.Stadium.str.rstrip()
+
+
 # %%
 # Export to csv
 m.to_csv("../05_data_clean/main_stadiums_long_capacity_year.csv", index=False,encoding='utf-8-sig')
-
-
-#%%
-m.loc[m.Stadium == "Lambeau Field "].Years_relevant
-
-m.loc[m.Stadium.str.contains("Lambeau")]

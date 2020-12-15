@@ -103,7 +103,6 @@ df["City"]= df.City.str.split(", ",expand=True)[0]
 city = df.groupby(["Season","City"])["Stadium"].nunique().reset_index()
 
 # %%
-test.City.nunique()
 
 plot_city = (
     ggplot(city, aes(x="Season",y="City",fill="City",color="Season")) +
@@ -155,9 +154,29 @@ plot_lambeau = (
 plot_lambeau
 
 plot_lambeau.save("../09_figures/plot_lambeau.png")
+# %%
 
+test = df.groupby(["Season","Stadium"])["Capacity"].max().reset_index()
+test.Stadium.nunique()
+# 84
+test.Stadium = test.Stadium.str.rstrip()
+test.Stadium.nunique()
+#68
+test = test.sort_values(by=["Stadium","Season"])
 
+test
 
+test.loc[test.Stadium=="Ford Field"]
+# Ford Field
+
+len(test.loc[test.duplicated(subset=["Season","Stadium"])])
+
+(ggplot(test, aes(x="Season", y = "Capacity")) +
+    geom_path() +
+    facet_wrap("Stadium") +
+    theme_classic() +
+    theme(figure_size=(20,20))
+    )
 #%%
 
 df.Time_rest_days.describe()

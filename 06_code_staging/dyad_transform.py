@@ -167,21 +167,25 @@ df["Same_surface"] = np.where(df["Surface"]==df["Team_A_Surface"],"Yes","No")
 
 
 # Next part is the attendance/ capacity thing - will leave that for now
+
+
+
+
 # %%
 # Attendance/ Capacity
 
 # Capacity for Cowboys is still not a number
-df.loc[df.Capacity=='80,000–100,000','Capacity'] = "105000"
+#df.loc[df.Capacity=='80,000–100,000','Capacity'] = "105000"
 
 
 
 df.Capacity.describe()
 # %%
 
-df.Capacity = df.Capacity.str.replace(",","").astype(float)
+#df.Capacity = df.Capacity.str.replace(",","").astype(float)
 df["Attendance_pct"] = df["attendance"]/df["Capacity"]*100
 df.Attendance_pct.describe()
-
+#%%
 df.Time_rest
 
 # %%
@@ -198,8 +202,3 @@ dyad = df[["Week","Season","Game_type","Team_A","Team_B","Team_A_Division","Stad
 # %%
 #export the dyad to csv
 dyad.to_csv("../07_data_staged/dyadic_data.csv", index=False,encoding='utf-8-sig')
-
-
-#%%
-
-dyad.dtypes

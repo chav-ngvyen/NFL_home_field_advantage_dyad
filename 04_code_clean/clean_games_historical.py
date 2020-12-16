@@ -562,7 +562,7 @@ test.Stadium.nunique()
 test = test.sort_values(by=["Stadium","Season"])
 
 
-(ggplot(test, aes(x="Season", y = "Capacity")) +
+(ggplot(test, aes(x="Season", y = "Capacity")) + 
     geom_line() +
     facet_wrap("Stadium") +
     theme_classic() +

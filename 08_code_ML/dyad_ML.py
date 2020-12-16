@@ -1,9 +1,6 @@
 ################
 # Dependencies #
 ################
-
-
-
 # Data Management/Investigation
 import pandas as pd
 from pandas.api.types import CategoricalDtype # Ordering categories
@@ -43,147 +40,184 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
+
 # %%
 
 # Import the dyadic data
 df = pd.read_csv("../07_data_staged/dyadic_data.csv")
 
-df.dtypes
+df.columns
+# %%
+
 # Convert Time_rest to time delta
 df["Time_rest"] = pd.to_timedelta(df["Time_rest"])
 
 # Convert Time_rest to number of hours
 df['Time_rest_hours'] = df['Time_rest'] / np.timedelta64(1, 'h')
 
+# Convert number of hours to days
+df['Time_rest_days'] = df['Time_rest_hours'] / 24
+
+
+# %%
+
+miss.matrix(df)
+#%%
+#Win
+df["Win"] = ""
+df.loc[df.Game_pts_diff < 0, "Win"] = 1
+df.loc[df.Game_pts_diff > 0, "Win"] = 0
+
+# %%
 # Convert categorial variables to categories
-for col in ['Week','Game_type','Surface','Outcome','Rivalry','Same_surface','Field']: df[col] = df[col].astype("category")
+for col in ['Week','Game_type','Surface','Game_outcome','Rivalry','Same_surface','Field','Win']: df[col] = df[col].astype("category")
 
-#%%
-#Outcome_code
-df["Outcome_code"] = ""
-df.loc[df.Points_diff < 0, "Outcome_code"] = -1
-df.loc[df.Points_diff == 0, "Outcome_code"] = 0
-df.loc[df.Points_diff > 0, "Outcome_code"] = 1
-
-#%%
-
-# Convert to ordinal values
-ord_enc = OrdinalEncoder()
-df[['Week_code','Game_type_code','Surface_code','Rivalry_code','Same_surface_code','Field_code']] = ord_enc.fit_transform(df[['Week','Game_type','Surface','Rivalry','Same_surface','Field']])
-
-df[["Surface","Surface_code","Same_surface","Same_surface_code","Field","Field_code","Rivalry","Rivalry_code"]]
+df.dtypes
 # %%
-#########
-# Split #
-#########
+# Split
 
-#Drop missing
-df.dropna(inplace=True)
-
-
-y = df[['Outcome_code']]
-X = df[['Surface_code','attendance','Time_rest_hours','Miles_traveled','Same_surface_code']]
-#train_X, test_X, train_y, test_y = train_test_split(X,y,test_size = .25,random_state=123)
-
-print(train_X.shape[0]/df.shape[0])
-print(test_X.shape[0]/df.shape[0])
-col_names = list(train_X)
+y = df[['Win']]
+X = df.drop(columns=['Win'])
+train_X, test_X, train_y, test_y = train_test_split(X,y,test_size = .25,random_state=123)
 
 # %%
-# mod = DT_reg(max_depth=5) # Initialize the modeling object (just as we did)
-# mod.fit(train_X,train_y) # Fit the mode
-# #%%
-# # Plot the tree
-# plt.figure(figsize=(30,10))
-# rules = tree.plot_tree(mod,feature_names = col_names,fontsize=7)
 
-
+# Plot the continuous Variables
+d_int = train_X.select_dtypes(include=["int"]).melt()
+(
+    ggplot(d_int,aes(x="value")) +
+    geom_histogram(bins=25) +
+    facet_wrap("variable",scales='free') +
+    theme(figure_size=(10,3),
+          subplots_adjust={'wspace':0.25})
+)
 
 # %%
-####
-# Modeling pipeline
-#
 
-# (0) Split the data
-train_X, test_X, train_y, test_y = train_test_split(X,y,test_size=.25,random_state=1988)
+d_float = train_X.select_dtypes(include=["float"]).melt()
+(
+    ggplot(d_float,aes(x="value")) +
+    geom_histogram(bins=25) +
+    facet_wrap("variable",scales='free') +
+    theme(figure_size=(10,3),
+          subplots_adjust={'wspace':0.25})
+)
+# %%
+# Explore game specific stats
+#Only usable ones are number of turnovers, number of yards, Attendance, Attendance_pct, Capacity, Miles traveled, time rest in hours
+d = train_X.copy()
+d['ln_attendance'] = np.log(d['Attendance_pct'])
 
-# (1) Set the folds index to ensure comparable samples
-fold_generator = KFold(n_splits=5, shuffle=True,random_state=111)
 
-# (2) Next specify the preprocessing steps
-#preprocess = ColumnTransformer(transformers=[('num', pp.MinMaxScaler(), ['BATHRM','ROOMS','LANDAREA'])])
+
+d.ln_miles
+
+(
+    ggplot(d,aes(x="ln_attendance")) +
+    geom_histogram() +
+    theme(figure_size=(10,3))
+    )
 #%%
 
-# (3) Next Let's create our model pipe (note for the model we leave none as a placeholder)
+# Set time rest for Week 1 as the longest time a team has to rest during the regular season
+time_rest_max = df.groupby(["Season","Game_type"])["Time_rest"].max().reset_index(name="Time_rest_max")
+time_rest_max = time_rest_max.loc[time_rest_max.Game_type=="Regular"]
+
+time_rest_max.drop(columns="Game_type", inplace=True)
+
+time_rest_max
+# %%
+
+# Merge to df
+df = pd.merge(df,time_rest_max, on=["Season"], how = "left")
+
+# Fill NA
+df["Time_rest"] = df["Time_rest"].fillna(df["Time_rest_max"])
+
+df.Time_rest
+# %%
+# Convert Time_rest to number of hours
+df['Time_rest_hours'] = df['Time_rest'] / np.timedelta64(1, 'h')
+
+# Convert number of hours to days
+df['Time_rest_days'] = df['Time_rest_hours'] / 24
+
+# Drop Time_rest_max
+df.drop(columns = "Time_rest_max", inplace = True)
+
+#%%
+df.columns
+
+# %%
+#########################
+# High level processing #
+#########################
+
+# Rivalry
+# Impose an order. 0 is no rivalry (meaning an AFC team is playing an NFC team), 1 is conference, and 2 is Division
+rival = ['No','Conference','Division']
+rival_types = CategoricalDtype(categories=rival, ordered=True)
+df['Rivalry'] = df['Rivalry'].astype(rival_types)
+df['Rivalry'] = df['Rivalry'].cat.codes
+
+df.Surface
+# %%
+# Grass
+df["Grass"] = 1*(df["Surface"] == "Grass")
+
+# Home
+df["Home"] = 1*(df["Field"] == "Home")
+
+# Same surface as the team's home field
+df["Same_surface"] = 1*(df["Same_surface"] == "Yes")
+
+# %%
+# Regular season vs playoff
+df["Regular"] = 1*(df["Game_type"] == "Regular")
+
+# %%
+# Split again
+
+# Split
+
+y = df[['Win']]
+X = df[["Time_rest_hours","Miles_traveled","Attendance","Capacity","Grass","Same_surface","Home", "Regular"]]
+train_X, test_X, train_y, test_y = train_test_split(X,y,test_size = .25,random_state=123)
+
+# %%
+
+# Set the folds index to ensure comparable samples
+fold_generator = KFold(n_splits=10, shuffle=True,random_state=1234)
+
 pipe = Pipeline(steps=[('pre_process', pp.MinMaxScaler()),('model',None)])
 
-
-# (4) Specify the models and their repsective tuning parameters.
-# Note the naming convention here to reference the model key
 search_space = [
-    # Linear Model
-    {'model' : [LM()]},
+
+    # NaiveBayes
+    {'model': [NB()]},
 
     # KNN with K tuning param
     {'model' : [KNN()],
-     'model__n_neighbors':[10,15,20,25,30]},
+     'model__n_neighbors':[5,10,25]},
 
-    # Decision Tree with the Max Depth Param
+    # # Decision Tree with the Max Depth Param
     {'model': [DT()],
-     'model__max_depth':[1,2,3,5]},
+     'model__max_depth':[2,3,4]},
 
-    # The Bagging decision tree model
-    {'model': [Bag()]},
-
-    # Random forest with the N Estimators tuning param
+    # #Random forest with the N Estimators tuning param
     {'model' : [RF()],
-     'model__max_depth':[1,2,3],
-     'model__n_estimators':[100,200,300]},
+    'model__max_depth':[2,3,4],
+    'model__n_estimators':[100,200,300]}
+
 ]
+# %%
 
 
-# (5) Put it all together in the grid search
+
 search = GridSearchCV(pipe, search_space,
                       cv = fold_generator,
-                      scoring='neg_mean_squared_error',
+                      scoring='roc_auc',
                       n_jobs=4)
 
-# (6) Fit the model to the training data
+# %%
 search.fit(train_X,train_y)
-
-
-# %%
-search.best_score_
-search.best_params_
-
-# %%
-# Test performance
-
-# Predict() method will use the best model out of the scan
-pred_y = search.predict(test_X)
-
-pred_y = pd.DataFrame(pred_y)
-m.mean_squared_error(test_y,pred_y)
-
-m.r2_score(test_y,pred_y)
-
-#%%
-type(pred_y)
-
-dict(pred=pred_y,truth=test_y)
-
-pd.DataFrame.from_records([{'pred':pred_y,'truth':test_y}])
-#%%
-# (
-#     ggplot(pd.DataFrame.from_records([{'pred':pred_y,'truth':test_y}])), aes(x='pred',y="truth") +
-#     geom_point(alpha=.75) +
-#     geom_abline(linetype="dashed",color="darkred",size=1) +
-#     theme_bw() +
-#     theme(figure_size=(10,7))
-# )
-
-
-# %%
-
-rf_mod = search.best_estimator_
-m.roc_auc_score(train_y,rf_mod.predict_proba(train_X)[:,1])

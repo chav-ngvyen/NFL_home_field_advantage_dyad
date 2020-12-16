@@ -184,7 +184,7 @@ df.Time_rest_days.describe()
 #%%
 plot_timerest = (
     ggplot(df.loc[(df.Outcome.isin(["Win","Lose"]))&(df.Game_type=="Regular")], aes(x="Outcome",y ="Time_rest_days",fill="Outcome")) +
-        #geom_jitter(aes(color="Outcome")) +
+        geom_jitter(aes(color="Outcome")) +
         geom_boxplot(notch=True)+
         #stat_summary(aes(group=1),fun_y = np.mean, geom="point",color="Black") +
         #stat_summary(aes(group=1),fun_y = np.mean, geom="line",color="Black") +

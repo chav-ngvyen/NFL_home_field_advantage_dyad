@@ -34,10 +34,13 @@ for col in Home_cols:
 for col in Away_cols:
     dat = col.split("Away_")[1]
     home_away = home_away.rename(columns = {f'{col}':f'Team_B_{dat}'})
+# %%
 
-# Field is "Home" for all the Team_A in home_away except for the SuperBowl
+# Field is "Home" for all the Team_A in home_away except for the SuperBowl and the international games
 home_away["Field"] = "Home"
 home_away.loc[home_away.Week=="SuperBowl","Field"] = "Neutral"
+home_away.loc[home_away.Stadium.isin(['Tottenham Hotspur Stadium','Estadio Azteca','Wembley Stadium','Twickenham Stadium']), "Field"] = "Neutral"
+
 # %%
 # Create df where team_A is away
 # Exact same steps above
@@ -54,10 +57,10 @@ for col in Away_cols:
     dat = col.split("Away_")[1]
     away_home = away_home.rename(columns = {f'{col}':f'Team_A_{dat}'})
 
-# Field is "Away" for all the Team_A in away_home except for the SuperBowl
+# Field is "Away" for all the Team_A in away_home except for the SuperBowl & the international games
 away_home["Field"] = "Away"
 away_home.loc[away_home.Week == "SuperBowl","Field"] = "Neutral"
-
+away_home.loc[away_home.Stadium.isin(['Tottenham Hotspur Stadium','Estadio Azteca','Wembley Stadium','Twickenham Stadium']), "Field"] = "Neutral"
 # %%
 ###################################
 #Concat the 2 to make a dyadic df #
@@ -101,44 +104,75 @@ df["Time_rest"].describe()
 # %%
 
 # Points differential
-df["Points_diff"] = df["Team_A_Pts"] - df["Team_B_Pts"]
+df["Game_pts_diff"] = df["Team_A_Pts"] - df["Team_B_Pts"]
 #%%
 
 # Win/Loss
 
 # Conditions
 conditions = [
-    (df['Points_diff'] < 0),
-    (df['Points_diff'] > 0),
-    (df['Points_diff'] == 0)
+    (df["Game_pts_diff"] < 0),
+    (df["Game_pts_diff"] > 0),
+    (df["Game_pts_diff"] == 0)
     ]
 
 # Outcome for team A
 values = ["Lose","Win","Tie"]
 
 # create a new column and use np.select to assign values to it using our lists as arguments
-df['Outcome'] = np.select(conditions, values)
+df['Game_outcome'] = np.select(conditions, values)
+
+
 
 
 # %%
+
 # Yards differential
-df["Yards_diff"] = df["Team_A_Yds"] - df["Team_B_Yds"]
+df["Game_yards_diff"] = df["Team_A_Yds"] - df["Team_B_Yds"]
 
 # Turnover differential
-df['Turnover_diff'] = df["Team_A_TO"] - df["Team_B_TO"]
+df['Game_TO_diff'] = df["Team_A_TO"] - df["Team_B_TO"]
 
+# %%
+# Game yards
+df.rename(columns={'Team_A_Yds':'Game_yds'}, inplace=True)
+
+# Game TO
+df.rename(columns={'Team_A_TO':'Game_TO'}, inplace=True)
+
+
+# %%
 # Season points diff
-df.rename(columns={'Team_A_PD':'Season_points_diff'}, inplace=True)
+df.rename(columns={'Team_A_PD':'Season_pts_diff'}, inplace=True)
 
 # Season margins of victory
-df.rename(columns={'Team_A_MoV':'Season_margins'}, inplace=True)
+df.rename(columns={'Team_A_MoV':'Season_victory_margin'}, inplace=True)
 
+# Season Win-Loss percent
+df.rename(columns={'Team_A_W-L%':'Season_WL_pct'}, inplace=True)
+
+# Season Strength of schedule
+df.rename(columns={'Team_A_SoS':'Season_SoS'}, inplace=True)
+
+# Season Offense
+df.rename(columns={'Team_A_OSRS':'Season_offense'}, inplace=True)
+
+# Season Defense
+df.rename(columns={'Team_A_DSRS':'Season_defense'}, inplace=True)
+
+
+df.columns
+
+
+# %%
 # Miles traveled
 df.rename(columns={'Team_A_travel':'Miles_traveled'}, inplace=True)
 
 # Time rest
 df.rename(columns={'Team_A_timerest':'Time_rest'}, inplace=True)
 
+
+#%%
 #Rename Team_A_Division_Rank to Division_Rank
 df.rename(columns={"Team_A_Division_Rank":"Division_rank"}, inplace = True)
 
@@ -165,28 +199,14 @@ df['Rivalry'] = np.select(conditions, values)
 # Is the Stadium surface the same as Team_A home surface?
 df["Same_surface"] = np.where(df["Surface"]==df["Team_A_Surface"],"Yes","No")
 
-
-# Next part is the attendance/ capacity thing - will leave that for now
-
-
-
-
 # %%
 # Attendance/ Capacity
 
-# Capacity for Cowboys is still not a number
-#df.loc[df.Capacity=='80,000–100,000','Capacity'] = "105000"
+df.rename(columns={'attendance':'Attendance'}, inplace=True)
 
-
-
-df.Capacity.describe()
-# %%
-
-#df.Capacity = df.Capacity.str.replace(",","").astype(float)
-df["Attendance_pct"] = df["attendance"]/df["Capacity"]*100
+df["Attendance_pct"] = df["Attendance"]/df["Capacity"]*100
 df.Attendance_pct.describe()
-#%%
-df.Time_rest
+
 
 # %%
 ################
@@ -196,7 +216,7 @@ df.Time_rest
 df.columns
 
 
-dyad = df[["Week","Season","Game_type","Team_A","Team_B","Team_A_Division","Stadium","Location","Surface","attendance","Capacity","Attendance_pct","Time_rest","Miles_traveled","Points_diff","Outcome","Yards_diff","Turnover_diff","Rivalry","Same_surface","Season_points_diff","Season_margins","Division_rank", "Field"]]
+dyad = df[["Week","Season","Game_type","Team_A","Team_B","Game_TO","Game_yds","Game_pts_diff","Game_yards_diff","Game_TO_diff","Game_outcome","Time_rest","Miles_traveled","Field","Stadium","Location","Surface","Attendance","Capacity","Attendance_pct","Team_A_Division","Division_rank","Rivalry","Same_surface","Season_WL_pct","Season_pts_diff","Season_victory_margin", "Season_SoS", "Season_offense", "Season_defense"]]
 
 
 # %%

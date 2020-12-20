@@ -120,3 +120,13 @@ div_table = div_table[['Tm', 'W', 'L','T','W-L%', 'PF', 'PA', 'PD', 'MoV', 'SoS'
 # %%
 # Export
 div_table.to_csv("../03_data_scrape/divisions_ranking.csv", index=False,encoding='utf-8-sig')
+
+# %%
+# Scrape the table for 1991
+div_table_1991 = division_scraper(urls=['https://www.pro-football-reference.com/years/1991/index.htm'], sleep = 10)
+
+div_table_1991
+div_table_1991 = div_table_1991[['Tm', 'W', 'L','W-L%', 'PF', 'PA', 'PD', 'MoV', 'SoS', 'SRS', 'OSRS','DSRS', 'Season', 'Division', 'Division_Rank']]
+
+#Export
+div_table_1991.to_csv("../03_data_scrape/divisions_ranking_1991.csv", index=False,encoding='utf-8-sig')

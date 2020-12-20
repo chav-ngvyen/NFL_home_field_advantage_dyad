@@ -1,0 +1,122 @@
+\begin{thebibliography}{}
+
+\bibitem[Breech, 2020]{cbs}
+Breech, J. (2020).
+\newblock {\em 2020 NFL schedule: Ravens get huge travel-related advantage,
+  Seahawks will fly the most miles}.
+\newblock
+  \url{https://www.cbssports.com/nfl/news/2020-nfl-schedule-ravens-get-huge-travel-related-advantage-seahawks-will-fly-the-most-miles/}.
+
+\bibitem[Buitinck et~al., 2013]{sklearn_api}
+Buitinck, L., Louppe, G., Blondel, M., Pedregosa, F., Mueller, A., Grisel, O.,
+  Niculae, V., Prettenhofer, P., Gramfort, A., Grobler, J., Layton, R.,
+  VanderPlas, J., Joly, A., Holt, B., and Varoquaux, G. (2013).
+\newblock {API} design for machine learning software: experiences from the
+  scikit-learn project.
+\newblock In {\em ECML PKDD Workshop: Languages for Data Mining and Machine
+  Learning}, pages 108--122.
+
+\bibitem[Drinen, 2007]{srs}
+Drinen, D. (2007).
+\newblock {\em A very simple ranking system}.
+\newblock
+  \url{https://www.pro-football-reference.com/blog/index4837.html?p=37}.
+
+\bibitem[Greenberg, 2020]{wapo}
+Greenberg, N. (2020).
+\newblock {\em There?s no such thing as home-field advantage in the NFL this
+  season}.
+\newblock
+  \url{https://www.washingtonpost.com/sports/2020/11/11/home-field-advantage-is-lie/}.
+
+\bibitem[Hermsmeyer, 2018]{538}
+Hermsmeyer, J. (2018).
+\newblock {\em The NFL?s Home-Field Advantage Is Real. But Why?}
+\newblock
+  \url{https://fivethirtyeight.com/features/the-nfls-home-field-advantage-is-real-but-why/}.
+
+\bibitem[Houston, 2019]{distance}
+Houston, P. (2019).
+\newblock {\em Calculate distance of two locations on Earth using Python}.
+\newblock
+  \url{https://medium.com/@petehouston/calculate-distance-of-two-locations-on-earth-using-python-1501b1944d97}.
+
+\bibitem[Jamieson, 2010]{hfa1}
+Jamieson, J.~P. (2010).
+\newblock The home field advantage in athletics: A meta-analysis.
+\newblock {\em Journal of Applied Social Psychology}, 40(7):1819--1848.
+\newblock
+  \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1559-1816.2010.00641.x}.
+
+\bibitem[Moskowitz and Wertheim, 2012]{scorecasting}
+Moskowitz, T. and Wertheim, L. (2012).
+\newblock {\em Scorecasting: The Hidden Influences Behind How Sports Are Played
+  and Games Are Won}.
+\newblock Three Rivers Press.
+
+\bibitem[{NFL Football Operations}, 2020a]{schedule}
+{NFL Football Operations} (2020a).
+\newblock {\em Creating the NFL Schedule}.
+\newblock \url{https://operations.nfl.com/the-game/creating-the-nfl-schedule/}.
+
+\bibitem[{NFL Football Operations}, 2020b]{falsestart}
+{NFL Football Operations} (2020b).
+\newblock {\em Pre-Snap Fouls}.
+\newblock
+  \url{https://operations.nfl.com/the-rules/nfl-video-rulebook/pre-snap-fouls/#article-2.-false-start}.
+
+\bibitem[Reitz, 2011]{requests}
+Reitz, K. (2011).
+\newblock {\em Requests: HTTP for Humans}.
+\newblock \url{https://requests.readthedocs.io/en/master/}.
+
+\bibitem[Richardson, 2007]{soup}
+Richardson, L. (2007).
+\newblock {\em Beautiful Soup Documentation}.
+\newblock \url{https://www.crummy.com/software/BeautifulSoup/bs4/doc/}.
+
+\bibitem[{Wikipedia contributors}, 2020a]{rams}
+{Wikipedia contributors} (2020a).
+\newblock {\em 1995 St. Louis Rams season}.
+\newblock \url{https://en.wikipedia.org/wiki/1995_St._Louis_Rams_season},
+  accessed \today.
+
+\bibitem[{Wikipedia contributors}, 2020b]{bills}
+{Wikipedia contributors} (2020b).
+\newblock {\em Bills Toronto Series}.
+\newblock \url{https://en.wikipedia.org/wiki/Bills_Toronto_Series}, accessed
+  \today.
+
+\bibitem[{Wikipedia contributors}, 2020c]{stadium}
+{Wikipedia contributors} (2020c).
+\newblock {\em Chronology of home stadiums for current National Football League
+  teams}.
+\newblock
+  \url{https://en.wikipedia.org/wiki/Chronology_of_home_stadiums_for_current_National_Football_League_teams},
+  accessed \today.
+
+\bibitem[{Wikipedia contributors}, 2020d]{lambeau}
+{Wikipedia contributors} (2020d).
+\newblock {\em Lambeau Field}.
+\newblock \url{https://en.wikipedia.org/wiki/Lambeau_Field#Seating_capacity},
+  accessed \today.
+
+\bibitem[{Wikipedia contributors}, 2020e]{tie}
+{Wikipedia contributors} (2020e).
+\newblock {\em List of NFL tied games}.
+\newblock \url{https://en.wikipedia.org/wiki/List_of_NFL_tied_games}, accessed
+  \today.
+
+\bibitem[{Wikipedia contributors}, 2020f]{int}
+{Wikipedia contributors} (2020f).
+\newblock {\em NFL International Series}.
+\newblock \url{https://en.wikipedia.org/wiki/NFL_International_Series},
+  accessed \today.
+
+\bibitem[{Wikipedia contributors}, 2020g]{regular}
+{Wikipedia contributors} (2020g).
+\newblock {\em NFL regular season}.
+\newblock \url{https://en.wikipedia.org/wiki/NFL_regular_season}, accessed
+  \today.
+
+\end{thebibliography}

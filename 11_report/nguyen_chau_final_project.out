@@ -1,4 +1,22 @@
-\BOOKMARK [1][-]{Doc-Start}{Introduction}{}% 1
-\BOOKMARK [1][-]{Doc-Start}{Problem Statement and Background}{}% 2
-\BOOKMARK [1][-]{Doc-Start}{Data}{}% 3
-\BOOKMARK [1][-]{Doc-Start}{Analysis}{}% 4
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Problem Statement and Background}{}% 2
+\BOOKMARK [1][-]{section.3}{Data}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Source}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Coverage}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Unit of observation}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.4}{Unit of analysis}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.5}{Variables of interest}{section.3}% 8
+\BOOKMARK [3][-]{subsubsection.3.5.1}{Target variable}{subsection.3.5}% 9
+\BOOKMARK [3][-]{subsubsection.3.5.2}{Feature Variables}{subsection.3.5}% 10
+\BOOKMARK [2][-]{subsection.3.6}{Potential issues}{section.3}% 11
+\BOOKMARK [3][-]{subsubsection.3.6.1}{Tied games}{subsection.3.6}% 12
+\BOOKMARK [3][-]{subsubsection.3.6.2}{Missingness in Time\137rest\137days variable}{subsection.3.6}% 13
+\BOOKMARK [3][-]{subsubsection.3.6.3}{The ever-changing NFL}{subsection.3.6}% 14
+\BOOKMARK [3][-]{subsubsection.3.6.4}{Outliers}{subsection.3.6}% 15
+\BOOKMARK [3][-]{subsubsection.3.6.5}{Rating a team}{subsection.3.6}% 16
+\BOOKMARK [2][-]{subsection.3.7}{Wrangling steps}{section.3}% 17
+\BOOKMARK [3][-]{subsubsection.3.7.1}{Scraping and cleaning the scraped data}{subsection.3.7}% 18
+\BOOKMARK [3][-]{subsubsection.3.7.2}{Setting up the dyad}{subsection.3.7}% 19
+\BOOKMARK [1][-]{section.4}{Analysis}{}% 20
+\BOOKMARK [1][-]{section.5}{Results}{}% 21
+\BOOKMARK [1][-]{section.6}{Further discussion}{}% 22

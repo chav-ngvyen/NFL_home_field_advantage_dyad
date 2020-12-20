@@ -196,19 +196,29 @@ df.columns
 df.loc[(df.Season==1995)&(df.Home_team.str.contains("Rams"))][['Week','Date','Home_team', 'Away_team','Stadium','Home_Stadium']]
 
 # Drop where they used Edward Jones in the first 4 games
-df.drop(df.loc[(df.Season==1995) & (df.Home_team=="St. Louis Rams") & (df.Date.isin(["September 10","September 24","October 12","October 22"])) & (df.Stadium=="Edward Jones Dome ")].index,inplace = True)
+df.drop(df.loc[(df.Season==1995) & (df.Home_team=="St. Louis Rams") & (df.Date.isin(["September 10","September 24","October 12","October 22"])) & (df.Stadium=="Edward Jones Dome")].index,inplace = True)
 
 # Drop where they used Busch after Oct 22
-df.drop(df.loc[(df.Season==1995) & (df.Home_team=="St. Louis Rams") & (~df.Date.isin(["September 10","September 24","October 12","October 22"])) & (df.Stadium=="Busch Stadium (II) ")].index, inplace = True)
+df.drop(df.loc[(df.Season==1995) & (df.Home_team=="St. Louis Rams") & (~df.Date.isin(["September 10","September 24","October 12","October 22"])) & (df.Stadium=="Busch Stadium (II)")].index, inplace = True)
 
 # As an away team
 # First game at Edward Jones was Nov 12, so it'll be the Away_Stadium will be Busch until before that day.
 # Drop where Away_Stadium = Edward Jones
-df.drop(df.loc[(df.Season==1995) & (df.Away_team=="St. Louis Rams") & (df.Date.isin(["September 3","September 17","October 1","October 29","November 5"])) & (df.Away_Stadium=="Edward Jones Dome ")].index, inplace = True)
+df.drop(df.loc[(df.Season==1995) & (df.Away_team=="St. Louis Rams") & (df.Date.isin(["September 3","September 17","October 1","October 29","November 5"])) & (df.Away_Stadium=="Edward Jones Dome")].index, inplace = True)
 # Drop Busch for the other dates
-df.drop(df.loc[(df.Season==1995) & (df.Away_team=="St. Louis Rams")&(~df.Date.isin(["September 3","September 17","October 1","October 29","November 5"])) & (df.Away_Stadium=="Busch Stadium (II) ")].index, inplace = True)
+df.drop(df.loc[(df.Season==1995) & (df.Away_team=="St. Louis Rams")&(~df.Date.isin(["September 3","September 17","October 1","October 29","November 5"])) & (df.Away_Stadium=="Busch Stadium (II)")].index, inplace = True)
 
 #Done with Rams!
+
+# %%
+df.Stadium.unique()
+
+df.loc[(df.Season == 1995) & (df.Home_team == "St. Louis Rams")]
+
+
+
+
+
 # %%
 ######################
 # Saints 2005 season #
@@ -217,7 +227,6 @@ df.drop(df.loc[(df.Season==1995) & (df.Away_team=="St. Louis Rams")&(~df.Date.is
 # Their stadium collapsed, so although technically they had the same home stadium, the "stadium" where the games were played changed
 
 # September 19 2005 already fixed above (Giants game after the dome collapsed)
-
 # Alamodome https://en.wikipedia.org/wiki/2005_New_Orleans_Saints_season
 df.loc[(df.Home_team == "New Orleans Saints") & (df.Season == 2005) & (df.Date.isin(["October 2","October 16","December 24"])),["Surface", "Capacity","Stadium","Location","URL","lat","lon"]] = odd_stadiums.loc[odd_stadiums["Stadium"] == "Alamodome ", ["Surface","Capacity","Stadium","Location","URL","lat","lon"]].values.tolist()
 
@@ -225,7 +234,7 @@ df.loc[(df.Home_team == "New Orleans Saints") & (df.Season == 2005) & (df.Date.i
 df.loc[(df.Home_team == "New Orleans Saints") & (df.Season == 2005) & (df.Date.isin(["October 30","November 6","December 4","December 18"])),["Surface","Capacity","Stadium","Location","URL","lat","lon"]] = odd_stadiums.loc[odd_stadiums["Stadium"] == "Tiger Stadium ", ["Surface","Capacity","Stadium","Location","URL","lat","lon"]].values.tolist()
 
 # Changing Tiger Stadium capacity to 79,000 https://en.wikipedia.org/wiki/Tiger_Stadium_(LSU)
-df.loc[(df.Home_team == "New Orleans Saints") & (df.Season == 2005) & (df.Stadium == "Tiger Stadium "), "Turf"] = "Grass"
+df.loc[(df.Home_team == "New Orleans Saints") & (df.Season == 2005) & (df.Stadium == "Tiger Stadium"), "Turf"] = "Grass"
 # Also changing Turf to grass
 df.loc[(df.Home_team == "New Orleans Saints") & (df.Season == 2005) & (df.Stadium == "Tiger Stadium "), "Capacity"] = 79000
 
@@ -562,7 +571,7 @@ test.Stadium.nunique()
 test = test.sort_values(by=["Stadium","Season"])
 
 
-(ggplot(test, aes(x="Season", y = "Capacity")) + 
+(ggplot(test, aes(x="Season", y = "Capacity")) +
     geom_line() +
     facet_wrap("Stadium") +
     theme_classic() +

@@ -151,6 +151,10 @@ df.rename(columns={'Team_A_MoV':'Season_victory_margin'}, inplace=True)
 # Season Win-Loss percent
 df.rename(columns={'Team_A_W-L%':'Season_WL_pct'}, inplace=True)
 
+# Season SRS
+df.rename(columns={'Team_A_SRS':'Season_SRS'}, inplace=True)
+
+
 # Season Strength of schedule
 df.rename(columns={'Team_A_SoS':'Season_SoS'}, inplace=True)
 
@@ -159,6 +163,32 @@ df.rename(columns={'Team_A_OSRS':'Season_offense'}, inplace=True)
 
 # Season Defense
 df.rename(columns={'Team_A_DSRS':'Season_defense'}, inplace=True)
+
+# %%
+# Lag season
+# Season points diff
+df.rename(columns={'Team_A_PD_lag':'L.Season_pts_diff'}, inplace=True)
+
+# Season margins of victory
+df.rename(columns={'Team_A_MoV_lag':'L.Season_victory_margin'}, inplace=True)
+
+# Season Win-Loss percent
+df.rename(columns={'Team_A_W-L%_lag':'L.Season_WL_pct'}, inplace=True)
+
+# Season SRS
+df.rename(columns={'Team_A_SRS_lag':'L.Season_SRS'}, inplace=True)
+
+
+# Season Strength of schedule
+df.rename(columns={'Team_A_SoS_lag':'L.Season_SoS'}, inplace=True)
+
+# Season Offense
+df.rename(columns={'Team_A_OSRS_lag':'L.Season_offense'}, inplace=True)
+
+# Season Defense
+df.rename(columns={'Team_A_DSRS_lag':'L.Season_defense'}, inplace=True)
+
+
 
 
 df.columns
@@ -171,10 +201,14 @@ df.rename(columns={'Team_A_travel':'Miles_traveled'}, inplace=True)
 # Time rest
 df.rename(columns={'Team_A_timerest':'Time_rest'}, inplace=True)
 
+# Time diff
+df.rename(columns={'Team_A_timediff':'Time_diff'}, inplace=True)
 
 #%%
 #Rename Team_A_Division_Rank to Division_Rank
 df.rename(columns={"Team_A_Division_Rank":"Division_rank"}, inplace = True)
+
+df.rename(columns={"Team_A_Division_Rank_lag":"L.Division_rank"}, inplace = True)
 
 # %%
 # Rivalry
@@ -206,7 +240,11 @@ df.rename(columns={'attendance':'Attendance'}, inplace=True)
 
 df["Attendance_pct"] = df["Attendance"]/df["Capacity"]*100
 df.Attendance_pct.describe()
+# %%
+#International
+df.loc[df.Stadium.isin(['Rogers Centre','Tottenham Hotspur Stadium','Estadio Azteca','Wembley Stadium','Twickenham Stadium']), "Geography"] = "International"
 
+df.Geography = df.Geography.fillna("Domestic")
 
 # %%
 ################
@@ -216,7 +254,8 @@ df.Attendance_pct.describe()
 df.columns
 
 
-dyad = df[["Week","Season","Game_type","Team_A","Team_B","Game_TO","Game_yds","Game_pts_diff","Game_yards_diff","Game_TO_diff","Game_outcome","Time_rest","Miles_traveled","Field","Stadium","Location","Surface","Attendance","Capacity","Attendance_pct","Team_A_Division","Division_rank","Rivalry","Same_surface","Season_WL_pct","Season_pts_diff","Season_victory_margin", "Season_SoS", "Season_offense", "Season_defense"]]
+dyad = df[["Week","Season","Game_type","Team_A","Team_B","Game_TO","Game_yds","Game_pts_diff","Game_yards_diff","Game_TO_diff","Game_outcome","Time_rest","Miles_traveled","Time_diff","Field","Stadium","Location","Geography","Surface","Attendance","Capacity","Attendance_pct","Team_A_Division","Division_rank","L.Division_rank","Rivalry","Same_surface","Season_WL_pct","Season_pts_diff","Season_victory_margin", "Season_SRS","Season_SoS", "Season_offense", "Season_defense","L.Season_WL_pct", "L.Season_pts_diff",
+       "L.Season_victory_margin", "L.Season_SoS","L.Season_offense", "L.Season_defense","L.Season_SRS"]]
 
 
 # %%
